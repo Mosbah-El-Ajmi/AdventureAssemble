@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const App = () => {
+const ListeUtilisateurs = () => {
     const [missions, setMissions] = useState([]);
 
     useEffect(() => {
@@ -30,4 +30,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default ListeUtilisateurs;
