@@ -18,7 +18,9 @@ function Header() {
           <li><a href="creer-mission">Créer Mission</a></li>
         </ul>
 		<div className="account-icon">
-          <img src={accountIcon} alt="Account" />
+          <a target="_blank" href="login-or-sign-in">
+            <img src={accountIcon} alt="Account" />
+          </a>
         </div>
       </nav>
     </header>
