@@ -9,6 +9,7 @@ app.use(cors({
     optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 }));
 
+//donnée connecxion db
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -25,11 +26,26 @@ connection.connect((err) => {
     console.log('Connexion à la base de données MySQL réussie');
 });
 
-const utilisateursRouter = require('./route/utilisateurs');
 
-app.use('/utilisateurs', utilisateursRouter);
+//routes
+const missionsRouter = require('./route/missions');
+const missionsActiveRouter = require('./route/missionsActive');
+const joueursRouter = require('./route/joueurs');
 
 
+
+
+
+
+
+
+app.use('/missions', missionsRouter);
+app.use('/missionsActive', missionsActiveRouter);
+app.use('/joueurs', joueursRouter);
+
+
+
+//
 app.listen(port, () => {
     console.log(`Serveur backend écoutant sur le port ${port}`);
 });
