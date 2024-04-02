@@ -3,7 +3,7 @@ import logo from './Gather.png';
 import accountIcon from './account.png';
 import './Header.css';
 
-function Header() {
+function HeaderLoggedIn() {
   return (
     <header>
       <nav>
@@ -11,7 +11,11 @@ function Header() {
           <img src={logo} alt="Logo" />
         </div>
         <ul>
-          <li><a href="/">Accueil</a></li>
+          <li><a href="accueil">Accueil</a></li>
+          <li><a href="mission">Mission</a></li>
+          <li><a href="classement">Classement</a></li>
+          <li><a href="dashboard">Dashboard</a></li>
+          <li><a href="creer-mission">Créer Mission</a></li>
         </ul>
 		<div className="account-icon">
           <a target="_blank" href="login-or-sign-in">
@@ -23,4 +27,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderLoggedIn;

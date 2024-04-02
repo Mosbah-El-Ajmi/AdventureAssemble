@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header.js';
+import HeaderLoggedIn from './components/HeaderLoggedIn.js';
 import HomePage from './HomePage.js';
 import CreerMissionPage from './CreerMissionPage.js';
 import ListeUtilisateurs from "./ListeUtilisateurs";

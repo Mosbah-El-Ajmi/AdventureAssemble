@@ -18,7 +18,7 @@ function HomePage() {
         <div className="text-section">
           <h1>Une aventure IRL à votre goût</h1>
           <p>Accomplissez des missions de folie entre potes, n'importe quand, n'importe où!</p>
-          <p>Proposez vos idées les plus funs, défiez vos potes, et montez dans le classement pour devenir le Champion de la team. Qu'on soit partants pour explorer, créer, ou juste se marrer, Aventure Assemble vous promet des moments inoubliables et des défis à relever ensemble.</p>
+          <p>Proposez vos idées les plus funs, défiez vos potes, et montez dans le classement pour devenir le Champion de la team. Qu'on soit partants pour explorer, créer, ou juste se marrer, GatherGame vous promet des moments inoubliables et des défis à relever ensemble.</p>
           <p>Alors, cap ou pas cap ? Rejoignez-nous et préparez-vous à des aventures IRL inoubliables!</p>
           <button className="cta" onClick={handleButtonClick}>Créer une mission dès maintenant</button>
         </div>

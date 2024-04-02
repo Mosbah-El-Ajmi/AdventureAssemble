@@ -1,1 +1,1 @@
-GatherGame est un jeu entre les amis
+GatherGame est un jeu pour jouer entre amis.
