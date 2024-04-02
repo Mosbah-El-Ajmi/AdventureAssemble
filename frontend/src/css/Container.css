@@ -1,0 +1,145 @@
+.dashContainer{
+  width: calc(100% - 100px);
+  height: 100%;
+  padding: 20px;
+  padding-top: 30px;
+}
+
+.topContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topContainer .inputBox {
+  width: 350px;
+  max-width: 350px;
+  height: 45px;
+  position: relative;
+}
+
+.topContainer .inputBox input {
+  width: 100%;
+  height: 100%;
+  background: blueviolet;
+  border: none;
+  outline: none;
+  border-radius: 0.5em;
+  box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
+  color: whitesmoke;
+  font-size: 18px;
+  padding: 0px 40px;
+}
+
+.topContainer .inputBox input::placeholder {
+  color: black;
+}
+
+.topContainer .inputBox i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+  font-size: 20px;
+  width: 40px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.topContainer .profileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.topContainer .profileContainer .profileIcon {
+  width: 40px;
+  height: 40px;
+  background: blueviolet;
+  border-radius: 0.5em;
+  box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  position: relative;
+}
+
+.topContainer .profileContainer .profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0px 10px;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
+}
+
+.topContainer .profileContainer .profileImage img{
+  object-fit: cover;
+  width: 100;
+  height: 100%;
+}
+
+.topContainer .profileContainer .profileName {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.topContainer .profileContainer .menuChevron {
+  cursor: pointer;
+  font-size: 12px;
+  margin: 0px 10px;
+}
+.topContainer .profileContainer .menuChevron:hover {
+  transition: transform 0.5s ease;
+}
+
+.topContainer .profileContainer .menuContainer {
+  position: absolute;
+  right: 10px;
+  top: 50px;
+  background: blueviolet;
+  border-radius: 0.5em;
+  width: 180px;
+  box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
+  z-index: 1;
+  transform: translatex(300px);
+  transition: transform 0.3s cubic-bezier(0.17, 0.81, 0.38, 1.18);
+}
+
+
+.topContainer .profileContainer .menuContainer ul{
+  width: 100%;
+  height: 100%;
+}
+
+.topContainer .profileContainer .menuContainer ul li{
+  list-style: none;
+  margin: 5px 0;
+  width: 100%;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.topContainer .profileContainer .menuContainer ul li:hover{
+  background: palevioletred;
+  color: black;
+  transition: 0.3s;
+}
+
+@media screen and (max-width: 525px){
+  .dashContainer{
+    width: calc(100% - 68px)
+  }
+  .topContainer .inputBox{
+  width: 120px;
+  z-index: 101;
+  }
+
+  .topContainer .inputBox input:focus{
+    width: 320px;
+    transition: width 0.3s cubic-bezier(0.17, 0.81, 0.38, 1.18);
+    }
+}

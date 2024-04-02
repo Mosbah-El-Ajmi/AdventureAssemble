@@ -1,0 +1,20 @@
+.mainContainer{
+    width: 100%;
+    height: calc(100% - 45px);
+    display: flex;
+    padding-top: 15px;
+}
+
+.mainContainer .left{
+    width: calc(100% - 30%);
+    overflow-y: scroll;
+    transition: all 0.3s cubic-bezier(0.17, 0.81, 0.38, 1.18);
+
+}
+.mainContainer .left::-webkit-scrollbar{
+    display: none;
+}
+
+.mainContainer .right{
+    width: calc(100% - 70%);
+}

@@ -1,0 +1,18 @@
+.dashboard {
+  width: 100%;
+  height: 100vh;
+  background: wheat;
+  display: flex;
+  overflow: hidden;
+}
+
+.dashboard::-webkit-scrollbar {
+  display: none;
+}
+
+@media only screen and (max-width: 525px) {
+  .dashboard {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}
