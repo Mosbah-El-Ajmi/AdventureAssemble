@@ -3,6 +3,8 @@ const mysql = require('mysql');
 const app = express();
 const port = 3001; // ou tout autre port de votre choix
 const cors = require('cors');
+const bodyParser = require('body-parser');
+
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -25,6 +27,10 @@ connection.connect((err) => {
     }
     console.log('Connexion à la base de données MySQL réussie');
 });
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //routes
