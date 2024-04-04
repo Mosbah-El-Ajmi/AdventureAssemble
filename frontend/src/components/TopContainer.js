@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react'
-import { BiSearchAlt, BiBell, BiChevronDown  } from "react-icons/bi";
-import  spike  from "../images/spike.jpg"
+import React, { useEffect } from "react";
+import { BiSearchAlt, BiBell, BiChevronDown } from "react-icons/bi";
+import spike from "../images/spike.jpg";
 
 function TopContainer() {
-
-    useEffect(() => {
+  /*     useEffect(() => {
         const menuChevron= document.getElementById('menuChevron');
         const menuContainer = document.getElementById('menuContainer');
     
@@ -16,40 +15,32 @@ function TopContainer() {
             menuChevron.style.transform = "rotate(0deg)";
             menuContainer.style.transform = 'translatex(300px)';
         });
-    }, []);
- 
+    }, []); */
+
   return (
-    <div className='topContainer'>
-        <div className='inputBox'>
-            <input type='text' placeholder='Rechercher'/>
-            <i>
-                <BiSearchAlt/>
-            </i>
+    <div className="topContainer">
+      <div className="inputBox">
+        <input type="text" placeholder="Rechercher" />
+        <i>
+          <BiSearchAlt />
+        </i>
+      </div>
+
+      <div className="profileContainer">
+        <i className="profileIcon">
+          <BiBell />
+        </i>
+
+        <div className="profileImage">
+          <img src={spike} alt="" />
         </div>
-
-        <div className="profileContainer">
-            <i className="profileIcon">
-            <BiBell/>
-            </i>
-
-            <div className="profileImage">
-                <img src={spike} alt="" />
-            </div>
-            <p className="profileName">Alex Adams</p>
-            <i className="menuChevron" id="menuChevron">
-                <BiChevronDown/>
-            </i>
-
-            <div className="menuContainer" id="menuContainer">
-                <ul>
-                    <li>Profile</li>
-                    <li>Compte</li>
-                    <li>Se Deconnecter</li>
-                </ul> 
-            </div>
-        </div>
+        <p className="profileName">Alex Adams</p>
+        <i className="menuChevron" id="menuChevron">
+          <BiChevronDown />
+        </i>
+      </div>
     </div>
-  )
+  );
 }
 
-export default TopContainer
+export default TopContainer;

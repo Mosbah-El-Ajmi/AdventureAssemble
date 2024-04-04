@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Importe useNavigate
-import './HomePage.css';
+import '../css/HomePage.css';
 
 function HomePage() {
   let navigate = useNavigate(); // Utilise l'hook useNavigate pour la navigation

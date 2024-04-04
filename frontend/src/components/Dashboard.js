@@ -1,6 +1,6 @@
 import "../css/Dashboard.css";  
-import Menu from "../components/Menu";
-import Container from "../components/Container";
+import Menu from "./Menu";
+import Container from "./Container";
 
 function Dashboard() {
   return (

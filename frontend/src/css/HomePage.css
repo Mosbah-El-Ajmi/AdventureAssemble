@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'Michroma';
+  src: url('../fonts/Michroma-Regular.ttf') format('truetype');
+}
+
+.app {
+  font-family: 'Michroma', sans-serif;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.split-layout {
+  display: flex;
+  max-width: 1200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 20px; /* Rounded corners */
+  overflow: hidden; /* Ensures the content respects the border-radius */
+}
+
+.image-section {
+  background: url('../images/OIG3.jpg') center center no-repeat;
+  background-size: cover;
+  width: 50%;
+}
+
+.text-section {
+  background: #FFF;
+  padding: 50px;
+  width: 50%;
+}
+
+h1 {
+  margin-bottom: 24px;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+.cta {
+  padding: 15px 30px;
+  color: #FFF;
+  background-color: #0061DF; /* Blue background */
+  border: none;
+  border-radius: 25px; /* Rounded corners */
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.cta:hover {
+  background-color: #004BA8; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}

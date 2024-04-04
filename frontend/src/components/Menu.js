@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "../css/Menu.css";
 import { Link, useLocation } from 'react-router-dom';
-import Logo from "../images/Gather.png"
 import {
   GiMatterStates, 
   GiProgression, 

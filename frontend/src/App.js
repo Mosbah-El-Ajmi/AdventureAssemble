@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header.js';
-import HomePage from './js/HomePage.js';
-import CreerMissionPage from './js/CreerMissionPage.js';
-import ListeUtilisateurs from "./js/ListeUtilisateurs.js";
-import Dashboard from './js/Dashboard.js';
+import HomePage from './components/HomePage.js';
+import CreerMissionPage from './components/CreerMissionPage.js';
+import ListeUtilisateurs from "./components/ListeUtilisateurs.js";
+import Dashboard from './components/Dashboard.js';
 import HeaderLoggedIn from './components/HeaderLoggedIn.js';
-import LoginSigninPage from "./LoginSigninPage";
+import LoginSigninPage from "./components/LoginSigninPage";
 
 function App() {
     return (
