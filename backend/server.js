@@ -3,12 +3,15 @@ const mysql = require('mysql');
 const app = express();
 const port = 3001; // ou tout autre port de votre choix
 const cors = require('cors');
+const bodyParser = require('body-parser');
+
 
 app.use(cors({
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 }));
 
+//donnée connecxion db
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -25,11 +28,30 @@ connection.connect((err) => {
     console.log('Connexion à la base de données MySQL réussie');
 });
 
-const utilisateursRouter = require('./route/utilisateurs');
 
-app.use('/utilisateurs', utilisateursRouter);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
+//routes
+const missionsRouter = require('./route/missions');
+const missionsActiveRouter = require('./route/missionsActive');
+const joueursRouter = require('./route/joueurs');
+
+
+
+
+
+
+
+
+app.use('/missions', missionsRouter);
+app.use('/missionsActive', missionsActiveRouter);
+app.use('/joueurs', joueursRouter);
+
+
+
+//
 app.listen(port, () => {
     console.log(`Serveur backend écoutant sur le port ${port}`);
 });

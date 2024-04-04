@@ -2,11 +2,11 @@ import '../App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ListeUtilisateurs = () => {
+const ListeMissions = () => {
     const [missions, setMissions] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/utilisateurs')
+        axios.get('http://localhost:3001/missions')
             .then(response => {
                 setMissions(response.data);
             })
@@ -30,4 +30,4 @@ const ListeUtilisateurs = () => {
     );
 };
 
-export default ListeUtilisateurs;
+export default ListeMissions;
