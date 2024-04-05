@@ -2,20 +2,20 @@ import React, { useEffect } from "react";
 import "../css/Menu.css";
 import { Link, useLocation } from "react-router-dom";
 import {
-  GiMatterStates,
+  GiTimeBomb,
+  GiAbstract038,
   GiProgression,
   GiGoldBar,
-  GiPodiumWinner,
   GiSiren,
   GiBigGear,
-  GiHamburgerMenu,
+  GiPeriscope,
 } from "react-icons/gi";
 
 function Menu() {
   const location = useLocation();
 
   useEffect(() => {
-    const mainMenuLi = document.querySelectorAll("#mainMenu li, .lastMenu li");
+    const mainMenuLi = document.querySelectorAll("#mainMenu li");
 
     function changeActive() {
       mainMenuLi.forEach((n) => n.classList.remove("active"));
@@ -25,10 +25,8 @@ function Menu() {
     mainMenuLi.forEach((n) => n.addEventListener("click", changeActive));
 
     if (location.pathname === "/dashboard") {
-      const podiumWinnerLink = document.querySelector(
-        "#mainMenu li:first-child"
-      );
-      podiumWinnerLink.classList.add("active");
+      const choisi = document.querySelector("#mainMenu li:first-child");
+      choisi.classList.add("active");
     }
   }, [location.pathname]);
 
@@ -37,52 +35,44 @@ function Menu() {
       <ul id="mainMenu">
         <li>
           <Link to="/dashboard">
-            <span>
-              <GiPodiumWinner />
-            </span>
+            <GiAbstract038 />
+            <span className="linkName">Dashboard</span>
           </Link>
         </li>
         <li>
           <Link to="/progression">
-            <span>
-              <GiProgression />
-            </span>
+            <GiProgression />
+            <span className="linkName">Progression</span>
           </Link>
         </li>
         <li>
           <Link to="/rewards">
-            <span>
-              <GiGoldBar />
-            </span>
+            <GiGoldBar />
+            <span className="linkName">Récompense</span>
           </Link>
         </li>
         <li>
           <Link to="/history">
-            <span>
-              <GiMatterStates />
-            </span>
+            <GiTimeBomb />
+            <span className="linkName">Historique</span>
           </Link>
         </li>
         <li>
           <Link to="/notification">
-            <span>
-              <GiSiren />
-            </span>
+            <GiSiren />
+            <span className="linkName">Notifications</span>
           </Link>
         </li>
-      </ul>
-
-      <ul className="lastMenu">
         <li>
           <Link to="/parameter">
-            <span>
-              <GiBigGear />
-            </span>
+            <GiBigGear />
+            <span className="linkName">Paramètres</span>
           </Link>
         </li>
         <li>
-          <Link to="/menu">
-            <GiHamburgerMenu />
+          <Link to="/filtres">
+            <GiPeriscope />
+            <span className="linkName">Filtres</span>
           </Link>
         </li>
       </ul>
