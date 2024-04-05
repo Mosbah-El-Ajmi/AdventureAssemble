@@ -15,10 +15,11 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-height: 40px;
 }
 
 .logo img {
-  width: 75px; /* Ajustez la taille du logo selon vos besoins */
+  width: 60px; /* Ajustez la taille du logo selon vos besoins */
 }
 
 ul {
@@ -46,7 +47,7 @@ a:hover {
 }
 
 .account-icon img {
-  width: 70px; /* Ajustez la taille de l'icône du compte selon vos besoins */
+  width: 60px; /* Ajustez la taille de l'icône du compte selon vos besoins */
   transition: transform 0.5s ease;
   cursor: pointer;
   font-size: 12px;
@@ -55,13 +56,13 @@ a:hover {
 
 .menuContainer {
   position: absolute;
-  margin-top: 25px;
+  margin-top: 5px;
   padding: 10px;
   right: 10px;
   top: 50px;
   background: blueviolet;
   border-radius: 0.5em;
-  width: 200px;
+  width: 180px;
   box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
   z-index: 1;
   transform: translatex(300px);
@@ -87,12 +88,13 @@ a:hover {
 
 .menuContainer ul li:hover {
   background: palevioletred;
+  border-radius: 0.5em;
   color: black;
   transition: 0.3s;
 }
 
 .menuContainer ul li a {
-  display: block;
+  display: inline-block;
   text-decoration: none;
   color: inherit;
   width: 100%;

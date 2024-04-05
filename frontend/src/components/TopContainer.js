@@ -3,20 +3,6 @@ import { BiSearchAlt, BiBell, BiChevronDown } from "react-icons/bi";
 import spike from "../images/spike.jpg";
 
 function TopContainer() {
-  /*     useEffect(() => {
-        const menuChevron= document.getElementById('menuChevron');
-        const menuContainer = document.getElementById('menuContainer');
-    
-        menuChevron.addEventListener('mouseenter', () => {
-            menuChevron.style.transform = "rotate(180deg)";
-            menuContainer.style.transform = 'translatex(0px)';
-        });
-        menuContainer.addEventListener('mouseleave', () => {
-            menuChevron.style.transform = "rotate(0deg)";
-            menuContainer.style.transform = 'translatex(300px)';
-        });
-    }, []); */
-
   return (
     <div className="topContainer">
       <div className="inputBox">

@@ -12,7 +12,8 @@ function Header() {
       menuContainer.style.transform = "translatex(0px)";
     });
     menuContainer.addEventListener("mouseleave", () => {
-      menuContainer.style.transform = "translatex(300px)";
+      menuContainer.style.transform = "translateX(120%)";
+      document.body.style.overflow = "hidden";
     });
   }, []);
 
