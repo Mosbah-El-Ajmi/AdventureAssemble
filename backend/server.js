@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const missionsRouter = require('./route/missions');
 const missionsActiveRouter = require('./route/missionsActive');
 const joueursRouter = require('./route/joueurs');
-
+const utilisateursRouter = require('./route/utilisateurs');
 
 
 
@@ -48,7 +48,7 @@ const joueursRouter = require('./route/joueurs');
 app.use('/missions', missionsRouter);
 app.use('/missionsActive', missionsActiveRouter);
 app.use('/joueurs', joueursRouter);
-
+app.use('/utilisateurs', utilisateursRouter);
 
 
 //
