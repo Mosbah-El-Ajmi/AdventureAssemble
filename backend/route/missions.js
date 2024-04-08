@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
-const {getAllMissions,postMissions} = require('../controllers/missions')
+const userController = require('../controllers/missions')
 
-router.get('/', getAllMissions);
-router.post('/', postMissions);
+router.get('/', userController.getAllMissions);
+router.post('/post/', userController.postMissions);
+
+
 
 
 
