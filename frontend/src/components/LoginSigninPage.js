@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AuthProvider, { useAuth } from "./auth.js";
 import '../App.css';
 
 function CreerLogSignPage() {
@@ -22,19 +23,25 @@ function CreerLogSignPage() {
     setSignData({ ...signData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const auth = useAuth();
+  const handleLogin = (e) => {
     e.preventDefault();
-    setLogData({
-      name: '',
-      password: ''
-    });
-    setSignData({
-      name: '',
-      password: '',
-      email: ''
-    });
-    setShowLogin(false);
-    setShowSignin(false);
+    if (logData.name !== '' && logData.password !== ''){
+      auth.loginAction(logData);
+      setShowLogin(false);
+      setShowSignin(false);
+      return
+    }
+    alert("Merci de remplir les deux champs");
+  };
+  
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    if (signData.name !== '' && signData.password !== '' && signData.email !== ''){
+      // à faire
+      return
+    }
+    alert("Merci de remplir les trois champs");
   };
 
   return (
@@ -47,7 +54,7 @@ function CreerLogSignPage() {
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={() => setShowLogin(false)}>&times;</span>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
               <div>
                 <label>Nom:</label>
                 <input type="text" name="name" value={logData.name} onChange={handleChange} />
@@ -68,7 +75,7 @@ function CreerLogSignPage() {
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={() => setShowSignin(false)}>&times;</span>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSignIn}>
               <div>
                 <label>Nom:</label>
                 <input type="text" name="name" value={signData.name} onChange={handleChange} />
