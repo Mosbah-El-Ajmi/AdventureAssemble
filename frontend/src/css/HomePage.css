@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'Michroma';
-  src: url('../fonts/Michroma-Regular.ttf') format('truetype');
+  font-family: "Michroma";
+  src: url("../fonts/Michroma-Regular.ttf") format("truetype");
 }
 
 .app {
-  font-family: 'Michroma', sans-serif;
+  font-family: "Michroma", sans-serif;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -21,13 +21,13 @@
 }
 
 .image-section {
-  background: url('../images/OIG3.jpg') center center no-repeat;
+  background: url("../images/OIG3.jpg") center center no-repeat;
   background-size: cover;
   width: 50%;
 }
 
 .text-section {
-  background: #FFF;
+  background: #fff;
   padding: 50px;
   width: 50%;
 }
@@ -42,8 +42,8 @@ p {
 
 .cta {
   padding: 15px 30px;
-  color: #FFF;
-  background-color: #0061DF; /* Blue background */
+  color: #fff;
+  background-color: #0061df; /* Blue background */
   border: none;
   border-radius: 25px; /* Rounded corners */
   font-size: 16px;
@@ -53,6 +53,6 @@ p {
 }
 
 .cta:hover {
-  background-color: #004BA8; /* Darker blue on hover */
+  background-color: #004ba8; /* Darker blue on hover */
   transform: scale(1.05); /* Slightly larger on hover */
 }
