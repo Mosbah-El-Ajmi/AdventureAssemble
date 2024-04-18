@@ -12,28 +12,56 @@ function CreerMissionPage() {
 
   const [showModal, setShowModal] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false); // Ajout d'un état de chargement
+  const [error, setError] = useState(''); // Ajout d'un état pour les erreurs
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setMissionData({ ...missionData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(missionData);
-    setMissionData({
-      name: '',
-      instructions: '',
-      successConditions: '',
-      participants: '',
-      reward: ''
-    });
-    setShowModal(false);
-    setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 3000); 
+    setIsLoading(true);
+    setError('');
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        // Exemple de valeurs factices, remplacez-les par des valeurs appropriées
+        id: '123', // ID généré ou récupéré de manière appropriée
+        nom: missionData.name,
+        description: missionData.instructions,
+        auteur: 'auteur_id', // ID de l'auteur
+        destinataire: 'destinataire_id', // ID du destinataire
+        partie: 'partie_id', // ID de la partie
+        point: 10, // Points attribués pour la mission
+      }),
+    };
+
+    try {
+      const response = await fetch('http://localhost:3001/missions/post/', requestOptions);
+      if (!response.ok) throw new Error('Erreur lors de l\'envoi des données');
+      const result = await response.json();
+      console.log(result);
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
+      // Réinitialisation des données de mission après la soumission réussie
+      setMissionData({
+        name: '',
+        instructions: '',
+        successConditions: '',
+        participants: '',
+        reward: ''
+      });
+    } catch (error) {
+      console.error('Erreur lors de la création de la mission :', error);
+      setError('Une erreur est survenue lors de la création de la mission.');
+    } finally {
+      setIsLoading(false);
+    }
   };
+
 
   return (
 
