@@ -1,4 +1,4 @@
-import "../css/Dashboard.css";  
+import "../css/Dashboard.css";
 import Menu from "./Menu";
 import Container from "./Container";
 
