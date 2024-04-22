@@ -21,7 +21,7 @@ exports.getAllJoueurs = (req, res) => {
     });
 };
 
-//recupére d'un joueurs avec son id
+//récupére d'un joueurs avec son id
 exports.getJoueursById = (req, res) => {
     const id = req.params.id
     const query = 'SELECT id_joueur, id_utilisateur, id_partie, pseudo, nombre_points FROM Joueurs WHERE id_joueur = ?';

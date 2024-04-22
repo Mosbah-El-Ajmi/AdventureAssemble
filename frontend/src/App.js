@@ -8,19 +8,25 @@ import Dashboard from "./components/Dashboard.js";
 import HeaderLoggedIn from "./components/HeaderLoggedIn.js";
 import LoginSigninPage from "./components/LoginSigninPage";
 import Progression from "./components/Progression.js";
+import AuthProvider from "./components/auth.js";
+import PrivateRoute from "./components/PrivateRoute.js";
 
 function App() {
   return (
     <div>
       <Header />
-      <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route path="/creer-mission" element={<CreerMissionPage />} />
-        <Route path="/login-or-sign-in" element={<LoginSigninPage />} />
-        <Route path="/liste-missions" element={<SuiviMission />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
-        <Route path="/progression/*" element={<Progression />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="/login-or-sign-in" element={<LoginSigninPage />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/creer-mission" element={<CreerMissionPage />} />
+            <Route path="/liste-missions" element={<SuiviMission />} />
+            <Route path="/dashboard/*" element={<Dashboard />} />
+            <Route path="/progression/*" element={<Progression />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }
