@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require("mysql");
+const jwt = require("jsonwebtoken");
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -7,6 +8,12 @@ const connection = mysql.createConnection({
     password: 'Ephec123@',
     database: 'dev3'
 });
+
+const jwtSecret = '84dc00ddcda839cb7012d17f976461d78f0528ff501df769275c174cba8ffbeea10121e8b40d7e05'
+
+const generateAccessToken = (id_joueur) => {
+  return jwt.sign({ id_joueur }, jwtSecret, { expiresIn: 60*60 });
+};
 
 exports.getAllUtilisateurs = (req, res) => {
     const query = 'SELECT id_compte, nom, prenom, mail, mot_de_passe FROM Utilisateur';
@@ -36,6 +43,25 @@ exports.postUtilisateurs = (req, res) => {
             res.status(500).json({ error: 'Erreur lors de la création d\'un nouvel utilisateur' });
         } else {
             res.json(result);
+        }
+    });
+};
+
+//renvoie token d'authentification
+exports.getToken = (req, res) => {
+    const name = req.params.name;
+    const password = req.params.password;
+    const query = 'SELECT id_compte FROM Utilisateur WHERE (nom, mot_de_passe) = (?,?)';
+    connection.query(query, [name, password], (err, result) => {
+        result=JSON.parse(JSON.stringify(result))
+        if (err) {
+            console.error('Erreur lors de la vérification du login :', err);
+            res.status(500).json({ error: 'Erreur lors de la vérification du login' });
+        } else if (result[0] !== undefined) {
+            res.json({token:generateAccessToken(result[0].id_compte)});
+        } else {
+            res.status(500).json({error:'Mauvais nom ou mot de passe'}); // changer code d'erreur ?
+            console.error('Mauvais nom ou mot de passe');
         }
     });
 };

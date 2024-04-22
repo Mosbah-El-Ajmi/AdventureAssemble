@@ -26,10 +26,18 @@ function CreerLogSignPage() {
   const auth = useAuth();
   const handleLogin = (e) => {
     e.preventDefault();
-    if (logData.name !== '' && logData.password !== ''){
+    if(document.getElementsByName("name").length > 0 && logData.name !== '' && logData.password !== ''){
       auth.loginAction(logData);
-      setShowLogin(false);
-      setShowSignin(false);
+      document.getElementsByName("name")[0].style.color = "red";
+      document.getElementsByName("password")[0].style.color = "red";
+      setInterval(backNormal, 1000);
+      function backNormal(){
+        if(document.getElementsByName("name").length > 0){
+          document.getElementsByName("name")[0].style.color = "black";
+          document.getElementsByName("password")[0].style.color = "black";
+        }
+      }
+      
       return
     }
     alert("Merci de remplir les deux champs");

@@ -5,30 +5,29 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("site") || ""); // change?
+  const [token, setToken] = useState(localStorage.getItem("auth_token") || "");
   const navigate = useNavigate();
   const loginAction = async (data) => {
     try {
-      console.log(data);
-      const response = await fetch("http://localhost:3001/auth/"+data.name+"/"+data.password);
+      const response = await fetch("http://localhost:3001/utilisateurs/auth/"+data.name+"/"+data.password);
       const res = await response.json();
-      if (res.data) {
-        setUser(res.data.user);
+      if (res.token) {
+        setUser(data.name);
         setToken(res.token);
-        localStorage.setItem("site", res.token); // change?
-        navigate("/login-or-sign-in");
+        localStorage.setItem("auth_token", res.token);
+        navigate("/dashboard");
         return;
       }
       throw new Error(res.message);
-    } catch (err) {
-      console.error(err);
+    }
+    catch (err) {
     }
   };
 
   const logOut = () => {
     setUser(null);
     setToken("");
-    localStorage.removeItem("site"); // change?
+    localStorage.removeItem("auth_token");
     navigate("/login");
   };
 
