@@ -33,7 +33,7 @@ CREATE TABLE `Joueurs` (
   KEY `id_partie` (`id_partie`),
   CONSTRAINT `joueurs_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `Utilisateur` (`id_compte`),
   CONSTRAINT `joueurs_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `Partie` (`id_partie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `Joueurs` (
 
 LOCK TABLES `Joueurs` WRITE;
 /*!40000 ALTER TABLE `Joueurs` DISABLE KEYS */;
+INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',0);
 /*!40000 ALTER TABLE `Joueurs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,14 +63,16 @@ CREATE TABLE `Missions` (
   `destinataire_id` int DEFAULT NULL,
   `partie_id` int DEFAULT NULL,
   `points` int DEFAULT NULL,
+  `difficulte` int DEFAULT NULL,
   PRIMARY KEY (`id_mission`),
   KEY `partie_id` (`partie_id`),
   KEY `auteur_id` (`auteur_id`),
   KEY `destinataire_id` (`destinataire_id`),
   CONSTRAINT `missions_ibfk_1` FOREIGN KEY (`partie_id`) REFERENCES `Partie` (`id_partie`),
   CONSTRAINT `missions_ibfk_2` FOREIGN KEY (`auteur_id`) REFERENCES `Joueurs` (`id_joueur`),
-  CONSTRAINT `missions_ibfk_3` FOREIGN KEY (`destinataire_id`) REFERENCES `Joueurs` (`id_joueur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `missions_ibfk_3` FOREIGN KEY (`destinataire_id`) REFERENCES `Joueurs` (`id_joueur`),
+  CONSTRAINT `missions_chk_1` CHECK ((`difficulte` between 1 and 5))
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,6 +81,7 @@ CREATE TABLE `Missions` (
 
 LOCK TABLES `Missions` WRITE;
 /*!40000 ALTER TABLE `Missions` DISABLE KEYS */;
+INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'escalade','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'testnom','test description',1,NULL,1,1,1,90,NULL),(9,'testnom','test description',1,NULL,1,1,1,90,NULL),(10,'testnom','test description',1,NULL,1,1,1,90,NULL),(11,'testnom','test description',1,NULL,1,1,1,90,NULL),(12,NULL,'test description',1,NULL,1,1,1,90,NULL),(13,NULL,'test description',1,NULL,1,1,1,90,NULL),(14,NULL,'test description',1,NULL,1,1,1,90,NULL),(15,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(16,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(17,'test de nom 7','description mission 7',1,NULL,1,1,1,800,NULL),(18,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(19,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(20,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(21,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Missions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,6 +99,7 @@ CREATE TABLE `MissionsActives` (
   `date_debut` date DEFAULT NULL,
   `date_fin` date DEFAULT NULL,
   `id_status` int DEFAULT NULL,
+  `photo_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_mission_active`),
   KEY `id_joueur` (`id_joueur`),
   KEY `id_mission` (`id_mission`),
@@ -102,7 +107,7 @@ CREATE TABLE `MissionsActives` (
   CONSTRAINT `missionsactives_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `Joueurs` (`id_joueur`),
   CONSTRAINT `missionsactives_ibfk_2` FOREIGN KEY (`id_mission`) REFERENCES `Missions` (`id_mission`),
   CONSTRAINT `missionsactives_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `Status` (`id_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,6 +116,7 @@ CREATE TABLE `MissionsActives` (
 
 LOCK TABLES `MissionsActives` WRITE;
 /*!40000 ALTER TABLE `MissionsActives` DISABLE KEYS */;
+INSERT INTO `MissionsActives` VALUES (1,1,1,NULL,NULL,1,NULL),(2,1,3,NULL,NULL,1,NULL),(3,1,2,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `MissionsActives` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,11 +128,12 @@ DROP TABLE IF EXISTS `Partie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Partie` (
-  `id_partie` int NOT NULL,
+  `id_partie` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_partie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +142,7 @@ CREATE TABLE `Partie` (
 
 LOCK TABLES `Partie` WRITE;
 /*!40000 ALTER TABLE `Partie` DISABLE KEYS */;
-INSERT INTO `Partie` VALUES (1,'kot','2024-03-19'),(2,'kot','2024-03-19');
+INSERT INTO `Partie` VALUES (1,'kot','2024-03-19',1),(2,'kot','2024-03-19',1);
 /*!40000 ALTER TABLE `Partie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,10 +154,10 @@ DROP TABLE IF EXISTS `Status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Status` (
-  `id_status` int NOT NULL,
+  `id_status` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,13 +178,13 @@ DROP TABLE IF EXISTS `Utilisateur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Utilisateur` (
-  `id_compte` int NOT NULL,
+  `id_compte` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) DEFAULT NULL,
   `prenom` varchar(50) DEFAULT NULL,
   `mail` varchar(100) DEFAULT NULL,
   `mot_de_passe` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_compte`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,4 +206,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-26  0:16:29
+-- Dump completed on 2024-04-23  2:18:24
