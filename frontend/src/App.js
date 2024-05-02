@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard.js";
 import HeaderLoggedIn from "./components/HeaderLoggedIn.js";
 import LoginSigninPage from "./components/LoginSigninPage";
 import Progression from "./components/Progression.js";
+import Classement from "./components/Classement.js";
 import AuthProvider from "./components/auth.js";
 import PrivateRoute from "./components/PrivateRoute.js";
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/liste-missions" element={<SuiviMission />} />
             <Route path="/dashboard/*" element={<Dashboard />} />
             <Route path="/progression/*" element={<Progression />} />
+            <Route path="/classement/*" element={<Classement />} />
           </Route>
         </Routes>
       </AuthProvider>

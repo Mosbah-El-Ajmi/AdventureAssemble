@@ -9,6 +9,7 @@ import {
   GiSiren,
   GiBigGear,
   GiPeriscope,
+  GiHistogram,
 } from "react-icons/gi";
 
 function Menu() {
@@ -22,6 +23,12 @@ function Menu() {
           <Link to="/dashboard">
             <GiAbstract038 />
             <span className="linkName">Dashboard</span>
+          </Link>
+        </li>
+        <li className={activeItem === "/classement" ? "active" : ""}>
+          <Link to="/classement">
+            <GiHistogram />
+            <span className="linkName">Classement</span>
           </Link>
         </li>
         <li className={activeItem === "/progression" ? "active" : ""}>
