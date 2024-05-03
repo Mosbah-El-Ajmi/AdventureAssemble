@@ -2,18 +2,32 @@
     margin: 0 auto;
 }
 
-table {
+.Table table {
     border-collapse: collapse;
 }
 
-th, td {
+.Table th, td {
     padding: 7px;
     border: 3px solid black;
     margin: 0;
 }
 
-h3 {
+.Table h3 {
     margin-top: 20px;
     margin-bottom: 8px;
     font-size: 1.5em;
+}
+
+.Table button {
+    color: black;
+    background: none;
+    font-size: 1em;
+    font-weight: Bold;
+}
+
+.Table button:hover {
+    color: black;
+    background: orange;
+    font-size: 1em;
+    font-weight: Bold;
 }

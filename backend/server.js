@@ -46,7 +46,7 @@ const utilisateursRouter = require('./route/utilisateurs');
 
 
 app.use('/missions', missionsRouter);
-app.use('/missions_active', missionsActiveRouter);
+app.use('/missionsActive', missionsActiveRouter);
 app.use('/joueurs', joueursRouter);
 app.use('/utilisateurs', utilisateursRouter);
 

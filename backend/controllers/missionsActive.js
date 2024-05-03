@@ -21,10 +21,10 @@ exports.getAllMissionsActives = (req, res) => {
     });
 };
 
-//recupére les missions d'un joueurs avec son id
+//recupére les missions d'un joueur avec son id
 exports.getMissionsActivesByJoueur = (req, res) => {
     const id = req.params.id
-    const query = 'SELECT id_mission_active, id_joueur, id_mission, date_debut, date_fin, id_status FROM MissionsActives WHERE id_joueur = ?';
+    const query = 'SELECT id_mission_active, id_joueur, Missions.id_mission, date_debut, date_fin, id_status, nom_mission FROM MissionsActives JOIN Missions WHERE id_joueur = ? AND Missions.id_mission = MissionsActives.id_mission';
     connection.query(query, [id], (error, results) => {
         if (error) {
             console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
@@ -43,6 +43,20 @@ exports.getMissionsActivesByStatus = (req, res) => {
         if (error) {
             console.error('Erreur lors de la récupération des missions avec leurs status:', error);
             res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec leurs status' });
+        } else {
+            res.json(results);
+        }
+    });
+};
+
+// missions finies dans les dernières 24H d'un joueur avec son id
+exports.getMissions24hByJoueur = (req, res) => {
+    const id = req.params.id
+    const query = 'SELECT id_mission_active, MissionsActives.id_mission, date_fin, points FROM MissionsActives JOIN Missions WHERE id_joueur = ? AND date_fin >= DATE_ADD(CURDATE(), INTERVAL -1 DAY) AND id_status = 1 AND Missions.id_mission = MissionsActives.id_mission';
+    connection.query(query, [id], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
+            res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
         } else {
             res.json(results);
         }

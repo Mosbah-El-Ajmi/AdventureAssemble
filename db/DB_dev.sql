@@ -33,7 +33,7 @@ CREATE TABLE `Joueurs` (
   KEY `id_partie` (`id_partie`),
   CONSTRAINT `joueurs_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `Utilisateur` (`id_compte`),
   CONSTRAINT `joueurs_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `Partie` (`id_partie`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `Missions` (
   CONSTRAINT `missions_ibfk_2` FOREIGN KEY (`auteur_id`) REFERENCES `Joueurs` (`id_joueur`),
   CONSTRAINT `missions_ibfk_3` FOREIGN KEY (`destinataire_id`) REFERENCES `Joueurs` (`id_joueur`),
   CONSTRAINT `missions_chk_1` CHECK ((`difficulte` between 1 and 5))
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `MissionsActives` (
   CONSTRAINT `missionsactives_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `Joueurs` (`id_joueur`),
   CONSTRAINT `missionsactives_ibfk_2` FOREIGN KEY (`id_mission`) REFERENCES `Missions` (`id_mission`),
   CONSTRAINT `missionsactives_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `Status` (`id_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `Partie` (
   `date_creation` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_partie`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `Status` (
   `id_status` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +184,7 @@ CREATE TABLE `Utilisateur` (
   `mail` varchar(100) DEFAULT NULL,
   `mot_de_passe` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_compte`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
