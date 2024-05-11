@@ -54,3 +54,21 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.difficulty-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Ajoute un espacement de 10 pixels entre les boutons */
+}
+
+
+.difficulty-buttons button {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.difficulty-buttons button:last-child {
+  margin-right: 0;
+}
+
