@@ -3,14 +3,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const ListeMissions = () => {
-    const [missions, setMissions] = useState([]);
+    const [missionsActive, setMissionsActive] = useState([]);
     const [selectedMission, setSelectedMission] = useState(null);
+    const [selectedFile, setSelectedFile] = useState(null);
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/missions')
+        axios.get('http://localhost:3001/missions_active')
             .then(response => {
-                setMissions(response.data);
+                setMissionsActive(response.data);
             })
             .catch(error => {
                 console.error('Error fetching missions:', error);
@@ -21,24 +22,91 @@ const ListeMissions = () => {
         setSelectedMission(selectedMission === missionId ? null : missionId);
     };
 
+    const validateMissionStatus = (missionId) => {
+        axios.put(`http://localhost:3001/missions_active/validation/${missionId}`)
+            .then(response => {
+                console.log('Mission status updated successfully:', response);
+                // Met à jour de l'état local de la mission
+                setMissionsActive(missionsActive.map(missionActive =>
+                    missionActive.id_mission_active === missionId ? {...missionActive, id_status: 2} : missionActive
+                ));
+            })
+            .catch(error => {
+                console.error('Error updating mission status:', error);
+            });
+    };
+
+    const leaveMissionStatus = (missionId) => {
+        axios.put(`http://localhost:3001/missions_active/abandon/${missionId}`)
+            .then(response => {
+                console.log('Mission status updated successfully:', response);
+                // Met à jour de l'état local de la mission
+                setMissionsActive(missionsActive.map(missionActive =>
+                    missionActive.id_mission_active === missionId ? {...missionActive, id_status: 2} : missionActive
+                ));
+            })
+            .catch(error => {
+                console.error('Error updating mission status:', error);
+            });
+    };
+
+
+
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0];
+        setSelectedFile(file);
+
+        try {
+            const formData = new FormData();
+            formData.append('photo', file);
+
+            const response = await axios.post('http://localhost:3001/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            const imageUrl = response.data;
+            const missionId = selectedMission; // Récupère l'ID de la mission sélectionnée
+            console.log(`Mission ID: ${missionId}, Uploaded Image URL: ${imageUrl}`);
+
+            axios.put(`http://localhost:3001/missions_active/photo/${missionId}`, {url: imageUrl})
+                .then(response => {
+                    console.log('Mission status updated successfully:', response);
+                })
+
+                .catch(error => {
+                    console.error('Error updating mission status:', error);
+                });
+
+
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
+
+
 
     return (
-            <div className="app">
-                <div>
-                    <h1 className="titre">Liste des missions</h1>
-                </div>
-                <div className="missions-list">
-                    {missions.map(mission => (
-                        <div key={mission.id_mission} className={`mission ${selectedMission === mission.id_mission ? 'expanded' : ''}`} onClick={() => handleClick(mission.id_mission)} >
-                            <h2>{mission.nom_mission}</h2>
-                            {selectedMission === mission.id_mission && <p>{mission.description_mission}</p>}
-                            {selectedMission === mission.id_mission && <button className="valider">Valider</button>}
-                            {selectedMission === mission.id_mission && <button className="abandonner">Abandonner</button>}
-
-                        </div>
-                    ))}
-                </div>
+        <div className="app">
+            <div>
+                <h1 className="titre">Liste des missions</h1>
             </div>
+            <div className="missions-list">
+                {missionsActive.map(missionActive => (
+                    <div key={missionActive.id_mission_active} className={`mission ${selectedMission === missionActive.id_mission_active ? 'expanded' : ''}`} onClick={() => handleClick(missionActive.id_mission_active)} >
+                        <h2>{missionActive.nom_mission}</h2>
+                        {selectedMission === missionActive.id_mission_active && (
+                            <>
+                                <p>{missionActive.description_mission}</p>
+                                <input type="file" onClick={(e) => { e.stopPropagation();}} onChange={handleFileChange} />
+                                <button className="valider" onClick={(e) => { e.stopPropagation(); validateMissionStatus(missionActive.id_mission_active); }}>Valider</button>
+                                <button className="abandonner" onClick={(e) => { e.stopPropagation(); leaveMissionStatus(missionActive.id_mission_active); }}>Abandonner</button>
+                            </>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 
