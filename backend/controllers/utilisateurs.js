@@ -2,12 +2,7 @@ const express = require('express');
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Ephec123@',
-    database: 'dev3'
-});
+const connection = require('../DbConnection');
 
 const jwtSecret = '84dc00ddcda839cb7012d17f976461d78f0528ff501df769275c174cba8ffbeea10121e8b40d7e05'
 
