@@ -1,12 +1,7 @@
 const express = require('express');
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Ephec123@',
-    database: 'dev3'
-});
+const connection = require('../DbConnection');
 
 // Fonction pour récupérer toutes les missions
 exports.getAllMissions = (req, res) => {

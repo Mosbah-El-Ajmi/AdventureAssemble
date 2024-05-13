@@ -19,12 +19,10 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login-or-sign-in" element={<LoginSigninPage />} />
-          <Route element={<PrivateRoute />}>
             <Route path="/creer-mission" element={<CreerMissionPage />} />
             <Route path="/liste-missions" element={<SuiviMission />} />
             <Route path="/dashboard/*" element={<Dashboard />} />
             <Route path="/progression/*" element={<Progression />} />
-          </Route>
         </Routes>
       </AuthProvider>
     </div>
