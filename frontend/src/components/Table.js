@@ -24,7 +24,7 @@ const Table = () => {
       let p24h=[];
       let c = 0;
       for(let joueur of joueursBase){
-        axios.get('http://localhost:3001/MissionsActive/joueur/' + joueur.id_joueur)
+        axios.get('http://localhost:3001/missions_active/joueur/' + joueur.id_joueur)
           .then(response => {
               console.log(response);
               joueursBase[c].missions = response.data.length;
@@ -43,7 +43,7 @@ const Table = () => {
           .catch(error => {
               console.error('Error fetching missions number:', error);
           });
-        axios.get('http://localhost:3001/MissionsActive/24h/' + joueur.id_joueur)
+        axios.get('http://localhost:3001/missions_active/24h/' + joueur.id_joueur)
           .then(response => {
               let points = 0;
               for(let mission of response.data){
