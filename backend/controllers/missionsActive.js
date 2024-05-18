@@ -30,6 +30,19 @@ exports.getMissionsActivesByJoueur = (req, res) => {
     });
 };
 
+//recupére les missions d'un joueur et leur nom avec son id
+exports.getMissionsActivesNomsByJoueur = (req, res) => {
+    const id = req.params.id
+    const query = 'SELECT id_mission_active, id_joueur, Missions.id_mission, date_debut, date_fin, id_status, nom_mission FROM MissionsActives JOIN Missions WHERE id_joueur = ? AND Missions.id_mission = MissionsActives.id_mission';
+    connection.query(query, [id], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
+            res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
+        } else {
+            res.json(results);
+        }
+    });
+};
 
 
 exports.getMissionsActivesByStatus = (req, res) => {

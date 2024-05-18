@@ -24,7 +24,7 @@ const Table = () => {
       let p24h=[];
       let c = 0;
       for(let joueur of joueursBase){
-        axios.get('http://localhost:3001/missions_active/joueur/' + joueur.id_joueur)
+        axios.get('http://localhost:3001/missions_active/joueurNoms/' + joueur.id_joueur)
           .then(response => {
               console.log(response);
               joueursBase[c].missions = response.data.length;
