@@ -26,7 +26,6 @@ const Table = () => {
       for(let joueur of joueursBase){
         axios.get('http://localhost:3001/missions_active/joueurNoms/' + joueur.id_joueur)
           .then(response => {
-              console.log(response);
               joueursBase[c].missions = response.data.length;
               if(response.data.length == 0){
                 joueursBase[c].lastMission = ' - ';

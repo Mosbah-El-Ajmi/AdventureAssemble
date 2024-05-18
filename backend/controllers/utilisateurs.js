@@ -46,14 +46,14 @@ exports.postUtilisateurs = (req, res) => {
 exports.getToken = (req, res) => {
     const name = req.params.name;
     const password = req.params.password;
-    const query = 'SELECT id_compte FROM Utilisateur WHERE (nom, mot_de_passe) = (?,?)';
+    const query = 'SELECT id_compte, nom FROM Utilisateur WHERE (nom, mot_de_passe) = (?,?)';
     connection.query(query, [name, password], (err, result) => {
         result=JSON.parse(JSON.stringify(result))
         if (err) {
             console.error('Erreur lors de la vérification du login :', err);
             res.status(500).json({ error: 'Erreur lors de la vérification du login' });
         } else if (result[0] !== undefined) {
-            res.json({token:generateAccessToken(result[0].id_compte)});
+            res.json({token:generateAccessToken(result[0].id_compte), nom:result[0].nom, id:result[0].id_compte});
         } else {
             res.status(500).json({error:'Mauvais nom ou mot de passe'}); // changer code d'erreur ?
             console.error('Mauvais nom ou mot de passe');
