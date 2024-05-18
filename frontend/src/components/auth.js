@@ -22,6 +22,7 @@ const AuthProvider = ({ children }) => {
           const res2 = await response2.json();
           if (res2[0].pseudo) {
             localStorage.setItem("pseudo", res2[0].pseudo);
+            localStorage.setItem("joueur_id", res2[0].id_joueur);
             navigate("/dashboard");
             return;
           }

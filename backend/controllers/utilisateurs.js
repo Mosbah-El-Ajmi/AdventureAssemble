@@ -55,7 +55,7 @@ exports.getToken = (req, res) => {
         } else if (result[0] !== undefined) {
             res.json({token:generateAccessToken(result[0].id_compte), nom:result[0].nom, id:result[0].id_compte});
         } else {
-            res.status(500).json({error:'Mauvais nom ou mot de passe'}); // changer code d'erreur ?
+            res.status(500).json({error:'Mauvais nom ou mot de passe'});
             console.error('Mauvais nom ou mot de passe');
         }
     });
