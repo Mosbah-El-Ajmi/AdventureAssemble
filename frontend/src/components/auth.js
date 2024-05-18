@@ -23,17 +23,20 @@ const AuthProvider = ({ children }) => {
           if (res2[0].pseudo) {
             localStorage.setItem("pseudo", res2[0].pseudo);
             localStorage.setItem("joueur_id", res2[0].id_joueur);
-            navigate("/dashboard");
-            return;
           }
           throw new Error(res.message);
         }
         catch (err) {
+          localStorage.setItem("pseudo", 'None');
+          localStorage.setItem("joueur_id", 'None');
         }
+        navigate("/dashboard");
+        return;
       };
        throw new Error(res.message);
       }
       catch (err) {
+        console.error("Erreur lors de l'authentification");
     }
   };
 
