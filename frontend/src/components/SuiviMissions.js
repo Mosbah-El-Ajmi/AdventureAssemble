@@ -11,6 +11,7 @@ const ListeMissions = () => {
     useEffect(() => {
         axios.get('http://localhost:3001/missions_active')
             .then(response => {
+                const sortedMissions = response.data.sort((a, b) => a.id_status - b.id_status);
                 setMissionsActive(response.data);
             })
             .catch(error => {
@@ -27,9 +28,10 @@ const ListeMissions = () => {
             .then(response => {
                 console.log('Mission status updated successfully:', response);
                 // Met à jour de l'état local de la mission
-                setMissionsActive(missionsActive.map(missionActive =>
-                    missionActive.id_mission_active === missionId ? {...missionActive, id_status: 2} : missionActive
-                ));
+                const updatedMissions = missionsActive.map(missionActive =>
+                    missionActive.id_mission_active === missionId ? { ...missionActive, id_status: 2 } : missionActive
+                ).sort((a, b) => a.id_status - b.id_status);
+                setMissionsActive(updatedMissions);
             })
             .catch(error => {
                 console.error('Error updating mission status:', error);
@@ -41,9 +43,10 @@ const ListeMissions = () => {
             .then(response => {
                 console.log('Mission status updated successfully:', response);
                 // Met à jour de l'état local de la mission
-                setMissionsActive(missionsActive.map(missionActive =>
-                    missionActive.id_mission_active === missionId ? {...missionActive, id_status: 2} : missionActive
-                ));
+                const updatedMissions = missionsActive.map(missionActive =>
+                    missionActive.id_mission_active === missionId ? { ...missionActive, id_status: 4 } : missionActive
+                ).sort((a, b) => a.id_status - b.id_status);
+                setMissionsActive(updatedMissions);
             })
             .catch(error => {
                 console.error('Error updating mission status:', error);
@@ -93,14 +96,27 @@ const ListeMissions = () => {
             </div>
             <div className="missions-list">
                 {missionsActive.map(missionActive => (
-                    <div key={missionActive.id_mission_active} className={`mission ${selectedMission === missionActive.id_mission_active ? 'expanded' : ''}`} onClick={() => handleClick(missionActive.id_mission_active)} >
+                    <div
+                        key={missionActive.id_mission_active}
+                        className={`mission ${selectedMission === missionActive.id_mission_active ? 'expanded-' + missionActive.id_status : ''} mission-status-${missionActive.id_status}`}
+                        onClick={() => handleClick(missionActive.id_mission_active)}
+                    >
                         <h2>{missionActive.nom_mission}</h2>
                         {selectedMission === missionActive.id_mission_active && (
                             <>
                                 <p>{missionActive.description_mission}</p>
-                                <input type="file" onClick={(e) => { e.stopPropagation();}} onChange={handleFileChange} />
-                                <button className="valider" onClick={(e) => { e.stopPropagation(); validateMissionStatus(missionActive.id_mission_active); }}>Valider</button>
-                                <button className="abandonner" onClick={(e) => { e.stopPropagation(); leaveMissionStatus(missionActive.id_mission_active); }}>Abandonner</button>
+                                {missionActive.id_status === 1 && (
+                                    <input type="file" onClick={(e) => { e.stopPropagation();}} onChange={handleFileChange} />
+                                )}
+                                {missionActive.id_status === 2 && (
+                                    <img src={missionActive.photo_url} alt="image mission" className="cloudinary-image" />
+                                )}
+                                {missionActive.id_status === 1 && (
+                                    <button className="valider" onClick={(e) => { e.stopPropagation(); validateMissionStatus(missionActive.id_mission_active); }}>Valider</button>
+                                )}
+                                {missionActive.id_status === 1 && (
+                                    <button className="abandonner" onClick={(e) => { e.stopPropagation(); leaveMissionStatus(missionActive.id_mission_active); }}>Abandonner</button>
+                                )}
                             </>
                         )}
                     </div>

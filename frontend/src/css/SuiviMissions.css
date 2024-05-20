@@ -26,13 +26,6 @@
   font-family: "Michroma", sans-serif;
 }
 
-.expanded {
-  /* Styles supplémentaires pour les missions étendues */
-  background-color: #f9f9f9;
-  border: 1px solid #999;
-  padding: 4%;
-}
-
 .valider {
   background-color: darkgreen;
   width: 25%;
@@ -53,4 +46,61 @@
 
 .abandonner:hover {
   background-color: firebrick;
+}
+
+.mission-status-1 {
+  background-color: #f9f9f9;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.mission-status-2 {
+  background-color: orange;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.mission-status-3 {
+  background-color: green;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.mission-status-4 {
+  background-color: darkred;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.expanded-1 {
+  /* Styles supplémentaires pour les missions étendues */
+  background-color: #f9f9f9;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.expanded-2 {
+  /* Styles supplémentaires pour les missions étendues */
+  background-color: orange;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.expanded-3 {
+  /* Styles supplémentaires pour les missions étendues */
+  background-color: green;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.expanded-4 {
+  /* Styles supplémentaires pour les missions étendues */
+  background-color: darkred;
+  border: 1px solid #999;
+  padding: 4%;
+}
+
+.cloudinary-image {
+  max-width: 100%; /* Largeur maximale de 100% */
+  height: auto; /* Hauteur automatique pour maintenir le rapport hauteur/largeur */
 }

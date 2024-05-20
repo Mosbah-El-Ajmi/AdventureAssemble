@@ -25,9 +25,18 @@ app.use(cors({
 // Route to handle file upload
 app.post('/upload', upload.single('photo'), async (req, res) => {
     try {
-        // Upload image to Cloudinary
-        const result = await cloudinary.uploader.upload('data:image/jpeg;base64,' + req.file.buffer.toString('base64'), {
-            folder: 'GETG' // Optional: specify a folder in Cloudinary
+        const result = await new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream({
+                folder: 'GETG',
+                format: 'jpg', // Convert to JPEG format
+                quality: 'auto' // Automatically adjust quality
+            }, (error, result) => {
+                if (error) {
+                    return reject(error);
+                }
+                resolve(result);
+            });
+            stream.end(req.file.buffer);
         });
 
         // Log the URL of the uploaded image
@@ -39,10 +48,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
     }
 });
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
-}));
 
 //donnée connecxion db
 const connection = mysql.createConnection({

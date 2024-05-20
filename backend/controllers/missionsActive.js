@@ -105,7 +105,7 @@ exports.updateStatutL = (req, res) => {
 
 exports.getAllMissionsActives = (req, res) => {
     const query = `
-        SELECT ma.id_mission_active, ma.id_joueur, ma.id_mission, ma.date_debut, ma.date_fin, ma.id_status, m.description_mission AS description_mission, m.nom_mission AS nom_mission, m.validation_photo AS validation_photo
+        SELECT ma.id_mission_active, ma.id_joueur, ma.id_mission, ma.date_debut, ma.date_fin, ma.id_status, ma.photo_url, m.description_mission AS description_mission, m.nom_mission AS nom_mission, m.validation_photo AS validation_photo
         FROM MissionsActives ma
         JOIN Missions m ON ma.id_mission = m.id_mission
     `;
