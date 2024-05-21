@@ -1,24 +1,24 @@
 import React from "react";
 import "../css/Graphique.css";
-import { GraphiquesData } from "../data/graData";
+import { GraphiquesProvider, useGraphiques } from "../data/graData";
 import Carte from "./Carte";
 const Graphiques = () => {
   return (
-    <div className="Graphiques">
-      {GraphiquesData.map((carte, id) => {
-        return (
-          <div className="parentContainer">
-            <Carte
-              title={carte.title}
-              color={carte.color}
-              barValue={carte.barValue}
-              value={carte.value}
-              png={carte.png}
-              series={carte.series}
-            />
-          </div>
-        );
-      })}
+    <GraphiquesProvider>
+      <MainComponent />
+    </GraphiquesProvider>
+  );
+};
+
+const MainComponent = () => {
+  const graphiquesData = useGraphiques();
+
+  return (
+    <div>
+      <div className="Graphiques">
+        <Carte graphiquesData={graphiquesData[0]} />
+        <Carte graphiquesData={graphiquesData[1]} />
+      </div>
     </div>
   );
 };

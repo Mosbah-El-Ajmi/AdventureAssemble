@@ -7,9 +7,9 @@ import SuiviMission from "./components/SuiviMissions.js";
 import Dashboard from "./components/Dashboard.js";
 import HeaderLoggedIn from "./components/HeaderLoggedIn.js";
 import LoginSigninPage from "./components/LoginSigninPage";
-import Progression from "./components/Progression.js";
-import Classement from "./components/Classement.js";
 import AuthProvider from "./components/auth.js";
+import Classement from "./components/Classement.js";
+import History from "./components/History.js";
 
 function App() {
   return (
@@ -19,11 +19,11 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login-or-sign-in" element={<LoginSigninPage />} />
-            <Route path="/creer-mission" element={<CreerMissionPage />} />
-            <Route path="/liste-missions" element={<SuiviMission />} />
-            <Route path="/dashboard/*" element={<Dashboard />} />
-            <Route path="/progression/*" element={<Progression />} />
-            <Route path="/classement/*" element={<Classement />} />
+          <Route path="/creer-mission" element={<CreerMissionPage />} />
+          <Route path="/liste-missions" element={<SuiviMission />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="/classement/*" element={<Classement />} />
+          <Route path="/history/*" element={<History />} />
         </Routes>
       </AuthProvider>
     </div>

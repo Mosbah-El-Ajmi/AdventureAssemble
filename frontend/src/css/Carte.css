@@ -65,10 +65,13 @@
 
 .ExpandedCard {
   position: absolute;
-  width: 60%;
+  width: 70%;
   height: 70vh;
   z-index: 9;
-  left: 13rem;
+  left: 20%;
+  bottom: 20%;
+  top: 20%;
+  right: 20%;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -90,5 +93,5 @@
 }
 
 .chartContainer {
-  width: 70%;
+  width: 65%;
 }
