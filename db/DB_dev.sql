@@ -198,6 +198,39 @@ INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test');
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+DROP TABLE IF EXISTS `playerhistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `playerhistory` (
+  `id_history` int NOT NULL AUTO_INCREMENT,
+  `id_joueur` int NOT NULL,
+  `id_partie` int NOT NULL,
+  `points` int NOT NULL,
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_history`),
+  KEY `id_joueur` (`id_joueur`),
+  KEY `id_partie` (`id_partie`),
+  CONSTRAINT `playerhistory_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `joueurs` (`id_joueur`),
+  CONSTRAINT `playerhistory_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `playerhistory`
+--
+
+LOCK TABLES `playerhistory` WRITE;
+/*!40000 ALTER TABLE `playerhistory` DISABLE KEYS */;
+INSERT INTO `playerhistory` (`id_history`, `id_joueur`, `id_partie`, `points`, `timestamp`) VALUES
+(1, 1, 1, 100, '2023-01-01 10:00:00'),
+(2, 1, 2, 150, '2023-01-02 11:00:00'),
+(3, 2, 1, 200, '2023-01-03 12:00:00'),
+/*!40000 ALTER TABLE `playerhistory` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

@@ -51,7 +51,7 @@ export const GraphiquesProvider = ({ children }) => {
       try {
         // Fetch data from backend API
         const response = await axios.get(
-          "http://localhost:3001/joueur/history" +
+          "http://localhost:3001/history" +
             "/" +
             localStorage.getItem("auth_token")
         );

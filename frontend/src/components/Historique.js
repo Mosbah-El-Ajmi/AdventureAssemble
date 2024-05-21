@@ -28,15 +28,11 @@ const Historique = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "ID History",
-        accessor: "id_history",
+        Header: "Joueur",
+        accessor: "id_joueur", //pseudo
       },
       {
-        Header: "ID Joueur",
-        accessor: "id_joueur",
-      },
-      {
-        Header: "ID Partie",
+        Header: "Partie",
         accessor: "id_partie",
       },
       {
