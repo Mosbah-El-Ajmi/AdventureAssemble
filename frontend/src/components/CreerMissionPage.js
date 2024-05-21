@@ -28,8 +28,7 @@ function CreerMissionPage() {
       date_creation: new Date().toISOString().slice(0, 10),
       public: 1,
       points: missionData.reward,
-      difficulte: missionData.difficulty,
-      tok: localStorage.getItem('auth_token')
+      difficulte: missionData.difficulty
     };
 
     e.preventDefault();
@@ -69,16 +68,17 @@ function CreerMissionPage() {
                 <span className="close" onClick={() => setShowModal(false)}>&times;</span>
                 <form onSubmit={handleSubmit}>
                   <div>
-                    <label>Nom de la mission:</label>
-                    <input type="text" name="name" value={missionData.name} onChange={handleChange}/>
+                    <label htmlFor="name">Nom de la mission:</label>
+                    <input id="name" type="text" name="name" value={missionData.name} onChange={handleChange}/>
                   </div>
                   <div>
-                    <label>Instructions:</label>
-                    <textarea name="instructions" value={missionData.instructions} onChange={handleChange}/>
+                    <label htmlFor="instructions">Instructions:</label>
+                    <textarea id="instructions" name="instructions" value={missionData.instructions} onChange={handleChange}/>
                   </div>
                   <div>
-                    <label>Points:</label>
+                    <label htmlFor="reward">Points:</label>
                     <input
+                        id="reward"
                         type="range"
                         min="0"
                         max="500"
@@ -133,7 +133,7 @@ function CreerMissionPage() {
 
         {/* Notification de création de mission */}
         {showNotification && (
-            <div className="notification">Mission crée avec succès!</div>
+            <div className="notification">Mission créée avec succès!</div>
         )}
 
         {/* Gestion des erreurs */}
