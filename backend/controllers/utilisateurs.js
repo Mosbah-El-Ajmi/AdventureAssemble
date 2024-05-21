@@ -1,25 +1,32 @@
 const express = require('express');
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
+const {auth, auth_id} = require('./auth_back.js');
 
 const connection = require('../DbConnection');
 
-const jwtSecret = '84dc00ddcda839cb7012d17f976461d78f0528ff501df769275c174cba8ffbeea10121e8b40d7e05'
+const jwtSecret = '84dc00ddcda839cb7012d17f976461d78f0528ff501df769275c174cba8ffbeea10121e8b40d7e05';
 
-const generateAccessToken = (id_joueur) => {
-  return jwt.sign({ id_joueur }, jwtSecret, { expiresIn: 60*60 });
+const generateAccessToken = (id_util) => {
+    return jwt.sign({id_util}, jwtSecret, { expiresIn: 60*60 });
 };
 
 exports.getAllUtilisateurs = (req, res) => {
     const query = 'SELECT id_compte, nom, prenom, mail, mot_de_passe FROM Utilisateur';
-    connection.query(query, (error, results) => {
-        if (error) {
-            console.error('Erreur lors de la récupération des utilisateurs :', error);
-            res.status(500).json({ error: 'Erreur lors de la récupération des utilisateurs' });
-        } else {
-            res.json(results);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(query, (error, results) => {
+            if (error) {
+                console.error('Erreur lors de la récupération des utilisateurs :', error);
+                res.status(500).json({ error: 'Erreur lors de la récupération des utilisateurs' });
+            } else {
+                res.json(results);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 // Créer un nouvel utilisateur dans la table Utilisateurs de la db.
@@ -54,9 +61,12 @@ exports.getToken = (req, res) => {
             res.status(500).json({ error: 'Erreur lors de la vérification du login' });
         } else if (result[0] !== undefined) {
             res.json({token:generateAccessToken(result[0].id_compte), nom:result[0].nom, id:result[0].id_compte});
+            
         } else {
             res.status(500).json({error:'Mauvais nom ou mot de passe'});
             console.error('Mauvais nom ou mot de passe');
         }
     });
 };
+
+

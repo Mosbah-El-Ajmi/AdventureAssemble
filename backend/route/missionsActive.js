@@ -3,13 +3,13 @@ const router = express.Router();
 const mysql = require('mysql');
 const {getAllMissionsActives, getMissionsActivesByJoueur, getMissionsActivesNomsByJoueur, getMissionsActivesByStatus, getMissions24hByJoueur, updateStatutV, updatePhoto, updateStatutL} = require('../controllers/missionsActive')
 
-router.get('/', getAllMissionsActives);
-router.get('/joueur/:id', getMissionsActivesByJoueur);
-router.get('/joueurNoms/:id', getMissionsActivesNomsByJoueur);
-router.get('/status/:id', getMissionsActivesByStatus);
-router.get('/24h/:id', getMissions24hByJoueur);
-router.put('/validation/:id', updateStatutV);
-router.put('/abandon/:id', updateStatutL)
-router.put('/photo/:id', updatePhoto);
+router.get('/:tok', getAllMissionsActives);
+router.get('/joueur/:id/:tok', getMissionsActivesByJoueur);
+router.get('/joueurNoms/:id/:tok', getMissionsActivesNomsByJoueur);
+router.get('/status/:id/:tok', getMissionsActivesByStatus);
+router.get('/24h/:id/:tok', getMissions24hByJoueur);
+router.put('/validation/:id/:tok', updateStatutV);
+router.put('/abandon/:id/:tok', updateStatutL)
+router.put('/photo/:id/:tok', updatePhoto);
 
 module.exports = router;

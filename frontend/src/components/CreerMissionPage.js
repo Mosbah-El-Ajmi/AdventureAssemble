@@ -28,7 +28,8 @@ function CreerMissionPage() {
       date_creation: new Date().toISOString().slice(0, 10),
       public: 1,
       points: missionData.reward,
-      difficulte: missionData.difficulty
+      difficulte: missionData.difficulty,
+      tok: localStorage.getItem('auth_token')
     };
 
     e.preventDefault();

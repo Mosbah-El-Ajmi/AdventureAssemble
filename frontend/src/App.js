@@ -10,7 +10,6 @@ import LoginSigninPage from "./components/LoginSigninPage";
 import Progression from "./components/Progression.js";
 import Classement from "./components/Classement.js";
 import AuthProvider from "./components/auth.js";
-import PrivateRoute from "./components/PrivateRoute.js";
 
 function App() {
   return (

@@ -3,7 +3,7 @@ const router = express.Router();
 const mysql = require('mysql');
 const {getAllMissions,postMissions} = require('../controllers/missions')
 
-router.get('/', getAllMissions);
+router.get('/:tok', getAllMissions);
 router.post('/', postMissions);
 
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require("mysql");
+const {auth, auth_id} = require('./auth_back.js');
 
 const connection = require('../DbConnection');
 /*
@@ -19,57 +20,81 @@ exports.getAllMissionsActives = (req, res) => {
 //recupére les missions d'un joueur avec son id
 exports.getMissionsActivesByJoueur = (req, res) => {
     const id = req.params.id
+    const tok = req.params.tok;
     const query = 'SELECT id_mission_active, id_joueur, id_mission, date_debut, date_fin, id_status FROM MissionsActives WHERE id_joueur = ?';
-    connection.query(query, [id], (error, results) => {
-        if (error) {
-            console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
-            res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
-        } else {
-            res.json(results);
-        }
-    });
+    if(auth(tok)){
+        connection.query(query, [id], (error, results) => {
+            if (error) {
+                console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
+                res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
+            } else {
+                res.json(results);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 //recupére les missions d'un joueur et leur nom avec son id
 exports.getMissionsActivesNomsByJoueur = (req, res) => {
     const id = req.params.id
     const query = 'SELECT id_mission_active, id_joueur, Missions.id_mission, date_debut, date_fin, id_status, nom_mission FROM MissionsActives JOIN Missions WHERE id_joueur = ? AND Missions.id_mission = MissionsActives.id_mission';
-    connection.query(query, [id], (error, results) => {
-        if (error) {
-            console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
-            res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
-        } else {
-            res.json(results);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(query, [id], (error, results) => {
+            if (error) {
+                console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
+                res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
+            } else {
+                res.json(results);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 
 exports.getMissionsActivesByStatus = (req, res) => {
     const id = req.params.id
     const query = 'SELECT id_mission_active, id_joueur, id_mission, date_debut, date_fin, id_status FROM MissionsActives WHERE id_status = ?';
-    connection.query(query, [id], (error, results) => {
-        if (error) {
-            console.error('Erreur lors de la récupération des missions avec leurs status:', error);
-            res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec leurs status' });
-        } else {
-            res.json(results);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(query, [id], (error, results) => {
+            if (error) {
+                console.error('Erreur lors de la récupération des missions avec leurs status:', error);
+                res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec leurs status' });
+            } else {
+                res.json(results);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 // missions finies dans les dernières 24H d'un joueur avec son id
 exports.getMissions24hByJoueur = (req, res) => {
     const id = req.params.id
     const query = 'SELECT id_mission_active, MissionsActives.id_mission, date_fin, points FROM MissionsActives JOIN Missions WHERE id_joueur = ? AND date_fin >= DATE_ADD(CURDATE(), INTERVAL -1 DAY) AND id_status = 1 AND Missions.id_mission = MissionsActives.id_mission';
-    connection.query(query, [id], (error, results) => {
-        if (error) {
-            console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
-            res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
-        } else {
-            res.json(results);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(query, [id], (error, results) => {
+            if (error) {
+                console.error('Erreur lors de la récupération des missions avec l id du joueur :', error);
+                res.status(500).json({ error: 'Erreur lors de la récupération des missions active avec l id du joueur' });
+            } else {
+                res.json(results);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 exports.updateStatutV = (req, res) => {
@@ -77,14 +102,20 @@ exports.updateStatutV = (req, res) => {
     const idMissions = req.params.id;
 
     const sql = "UPDATE MissionsActives SET id_status = (?) WHERE id_mission_active = (?)";
-    connection.query(sql, [statusMissions, idMissions], (err, result) => {
-        if (err) {
-            console.error('Erreur lors de la mise à jour de la description de la mission :', err);
-            res.status(500).json({ error: 'Erreur lors de la mise à jour de la description de la mission' });
-        } else {
-            res.json(result);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(sql, [statusMissions, idMissions], (err, result) => {
+            if (err) {
+                console.error('Erreur lors de la mise à jour de la description de la mission :', err);
+                res.status(500).json({ error: 'Erreur lors de la mise à jour de la description de la mission' });
+            } else {
+                res.json(result);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 
@@ -93,14 +124,20 @@ exports.updateStatutL = (req, res) => {
     const idMissions = req.params.id;
 
     const sql = "UPDATE MissionsActives SET id_status = (?) WHERE id_mission_active = (?)";
-    connection.query(sql, [statusMissions, idMissions], (err, result) => {
-        if (err) {
-            console.error('Erreur lors de la mise à jour de la description de la mission :', err);
-            res.status(500).json({ error: 'Erreur lors de la mise à jour de la description de la mission' });
-        } else {
-            res.json(result);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(sql, [statusMissions, idMissions], (err, result) => {
+            if (err) {
+                console.error('Erreur lors de la mise à jour de la description de la mission :', err);
+                res.status(500).json({ error: 'Erreur lors de la mise à jour de la description de la mission' });
+            } else {
+                res.json(result);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 exports.getAllMissionsActives = (req, res) => {
@@ -109,14 +146,20 @@ exports.getAllMissionsActives = (req, res) => {
         FROM MissionsActives ma
         JOIN Missions m ON ma.id_mission = m.id_mission
     `;
-    connection.query(query, (error, results) => {
-        if (error) {
-            console.error('Erreur lors de la récupération des missions actives avec description:', error);
-            res.status(500).json({ error: 'Erreur lors de la récupération des missions actives avec description' });
-        } else {
-            res.json(results);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(query, (error, results) => {
+            if (error) {
+                console.error('Erreur lors de la récupération des missions actives avec description:', error);
+                res.status(500).json({ error: 'Erreur lors de la récupération des missions actives avec description' });
+            } else {
+                res.json(results);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };
 
 exports.updatePhoto = (req, res) => {
@@ -124,12 +167,18 @@ exports.updatePhoto = (req, res) => {
     const idMissions = req.params.id;
 
     const sql = "UPDATE MissionsActives SET photo_url = (?) WHERE id_mission_active = (?)";
-    connection.query(sql, [urlPhoto, idMissions], (err, result) => {
-        if (err) {
-            console.error('Erreur lors de la mise à jour de l\'url de la photo :', err);
-            res.status(500).json({ error: 'Erreur lors de la mise à jour de l\'url de la photo' });
-        } else {
-            res.json(result);
-        }
-    });
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(sql, [urlPhoto, idMissions], (err, result) => {
+            if (err) {
+                console.error('Erreur lors de la mise à jour de l\'url de la photo :', err);
+                res.status(500).json({ error: 'Erreur lors de la mise à jour de l\'url de la photo' });
+            } else {
+                res.json(result);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
 };

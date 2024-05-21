@@ -9,7 +9,7 @@ const ListeMissions = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/missions_active')
+        axios.get('http://localhost:3001/missions_active/' +'/'+localStorage.getItem('auth_token'))
             .then(response => {
                 const sortedMissions = response.data.sort((a, b) => a.id_status - b.id_status);
                 setMissionsActive(response.data);
@@ -24,7 +24,7 @@ const ListeMissions = () => {
     };
 
     const validateMissionStatus = (missionId) => {
-        axios.put(`http://localhost:3001/missions_active/validation/${missionId}`)
+        axios.put(`http://localhost:3001/missions_active/validation/${missionId}`+'/'+localStorage.getItem('auth_token'))
             .then(response => {
                 console.log('Mission status updated successfully:', response);
                 // Met à jour de l'état local de la mission
@@ -39,7 +39,7 @@ const ListeMissions = () => {
     };
 
     const leaveMissionStatus = (missionId) => {
-        axios.put(`http://localhost:3001/missions_active/abandon/${missionId}`)
+        axios.put(`http://localhost:3001/missions_active/abandon/${missionId}`+'/'+localStorage.getItem('auth_token'))
             .then(response => {
                 console.log('Mission status updated successfully:', response);
                 // Met à jour de l'état local de la mission
@@ -72,7 +72,7 @@ const ListeMissions = () => {
             const missionId = selectedMission; // Récupère l'ID de la mission sélectionnée
             console.log(`Mission ID: ${missionId}, Uploaded Image URL: ${imageUrl}`);
 
-            axios.put(`http://localhost:3001/missions_active/photo/${missionId}`, {url: imageUrl})
+            axios.put(`http://localhost:3001/missions_active/photo/${missionId}`+'/'+localStorage.getItem('auth_token'), {url: imageUrl})
                 .then(response => {
                     console.log('Mission status updated successfully:', response);
                 })

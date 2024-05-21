@@ -50,7 +50,7 @@ function CreerLogSignPage() {
         nom: signData.name,
         prenom: signData.name,
         mail: signData.email,
-        mot_de_passe: signData.password
+        mot_de_passe: signData.password,
       };
       try {
         const response = await fetch('http://localhost:3001/utilisateurs/', {

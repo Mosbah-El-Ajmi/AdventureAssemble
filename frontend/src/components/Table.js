@@ -9,7 +9,7 @@ const Table = () => {
   const [joueurs, setJoueurs] = useState([]);
   const [sorted, setSorted] = useState(0);
   useEffect(() => {
-      axios.get('http://localhost:3001/joueurs/Partie/' + idPartie)
+      axios.get('http://localhost:3001/joueurs/Partie/' + idPartie + '/' + localStorage.getItem('auth_token'))
           .then(response => {
               setJoueursBase(response.data);
               setJoueursLoaded(true);
@@ -24,7 +24,7 @@ const Table = () => {
       let p24h=[];
       let c = 0;
       for(let joueur of joueursBase){
-        axios.get('http://localhost:3001/missions_active/joueurNoms/' + joueur.id_joueur)
+        axios.get('http://localhost:3001/missions_active/joueurNoms/' + joueur.id_joueur +'/'+localStorage.getItem('auth_token'))
           .then(response => {
               joueursBase[c].missions = response.data.length;
               if(response.data.length == 0){
@@ -42,7 +42,7 @@ const Table = () => {
           .catch(error => {
               console.error('Error fetching missions number:', error);
           });
-        axios.get('http://localhost:3001/missions_active/24h/' + joueur.id_joueur)
+        axios.get('http://localhost:3001/missions_active/24h/' + joueur.id_joueur +'/'+localStorage.getItem('auth_token'))
           .then(response => {
               let points = 0;
               for(let mission of response.data){
