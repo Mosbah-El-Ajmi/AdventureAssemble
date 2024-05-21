@@ -31,12 +31,6 @@ function Menu() {
             <span className="linkName">Classement</span>
           </Link>
         </li>
-        <li className={activeItem === "/progression" ? "active" : ""}>
-          <Link to="/progression">
-            <GiProgression />
-            <span className="linkName">Progression</span>
-          </Link>
-        </li>
         <li className={activeItem === "/rewards" ? "active" : ""}>
           <Link to="/rewards">
             <GiGoldBar />

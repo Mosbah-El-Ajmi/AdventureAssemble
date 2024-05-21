@@ -1,12 +1,14 @@
 import React from "react";
 import Menu from "./Menu";
+import Historique from "./Historique.js";
 
-function Progression() {
+function History() {
   return (
     <div className="dashboard">
       <Menu />
+      <Historique />
     </div>
   );
 }
 
-export default Progression;
+export default History;

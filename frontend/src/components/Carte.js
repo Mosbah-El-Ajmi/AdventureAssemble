@@ -1,25 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, LayoutGroup } from "framer-motion";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "../css/Carte.css";
 import { GrClose } from "react-icons/gr";
 import ReactApexChart from "react-apexcharts";
+import axios from "axios";
 
-const Carte = (props) => {
+const idPartie = 2;
+
+const Carte = ({ graphiquesData }) => {
   const [expanded, setExpanded] = useState(false);
+  const [pseudo, setPseudo] = useState("");
+  const [timestamps, setTimestamps] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:3001/joueurs/Partie/${idPartie}/${localStorage.getItem(
+          "auth_token"
+        )}`
+      )
+      .then((response) => {
+        if (response.data.length > 0) {
+          setPseudo(response.data[0].pseudo);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching player name:", error);
+      });
+
+    // Fetch player history based on auth_token
+    axios
+      .get(
+        `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
+      )
+      .then((response) => {
+        if (response.data.length > 0) {
+          const fetchedTimestamps = response.data.map((item) => item.timestamp);
+          setTimestamps(fetchedTimestamps);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching player history:", error);
+      });
+  }, []);
+
   return (
     <LayoutGroup>
       {expanded ? (
-        <ExpandedCard param={props} setExpanded={() => setExpanded(false)} />
+        <ExpandedCard
+          param={graphiquesData}
+          setExpanded={() => setExpanded(false)}
+          pseudo={pseudo}
+          timestamps={timestamps}
+        />
       ) : (
-        <CompactCard param={props} setExpanded={() => setExpanded(true)} />
+        <CompactCard
+          param={graphiquesData}
+          setExpanded={() => setExpanded(true)}
+          pseudo={pseudo}
+        />
       )}
     </LayoutGroup>
   );
 };
 
-function CompactCard({ param, setExpanded }) {
+function CompactCard({ param, setExpanded, pseudo }) {
   const Png = param.png;
   return (
     <LayoutGroup>
@@ -30,6 +77,13 @@ function CompactCard({ param, setExpanded }) {
           boxShadow: param.color.boxShadow,
         }}
         onClick={setExpanded}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+          ease: [0, 0.71, 0.2, 1.01],
+        }}
       >
         <div className="radialBar">
           <CircularProgressbar
@@ -41,14 +95,14 @@ function CompactCard({ param, setExpanded }) {
         <div className="detail">
           <Png />
           <span>{param.value}</span>
-          <span>Dernier Partie</span>
+          <span>{pseudo}</span>
         </div>
       </motion.div>{" "}
     </LayoutGroup>
   );
 }
 
-function ExpandedCard({ param, setExpanded }) {
+function ExpandedCard({ param, setExpanded, pseudo, timestamps }) {
   const data = {
     options: {
       chart: {
@@ -85,15 +139,16 @@ function ExpandedCard({ param, setExpanded }) {
       },
       xaxis: {
         type: "datetime",
-        categories: [
-          "2024-04-15T00:00:00.000Z",
-          "2024-04-15T01:30:00.000Z",
-          "2024-04-15T02:30:00.000Z",
-          "2024-04-15T03:30:00.000Z",
-          "2024-04-15T04:30:00.000Z",
-          "2024-04-15T05:30:00.000Z",
-          "2024-04-15T06:30:00.000Z",
-        ],
+        categories: param.series[0].data.map((_, index) => {
+          // Assuming the timestamps array is correctly ordered
+          const timestamp = new Date();
+          timestamp.setHours(timestamp.getHours() + index);
+          return timestamp.toISOString();
+        }),
+      },
+      yaxis: {
+        min: undefined,
+        max: undefined,
       },
     },
   };
@@ -103,6 +158,13 @@ function ExpandedCard({ param, setExpanded }) {
       style={{
         background: param.color.backGround,
         boxShadow: param.color.boxShadow,
+      }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.2,
+        ease: [0, 0.71, 0.2, 1.01],
       }}
     >
       <div
@@ -122,7 +184,7 @@ function ExpandedCard({ param, setExpanded }) {
           type="area"
         />
       </div>
-      <span>Dernier Partie</span>
+      <span>{pseudo}</span>
     </motion.div>
   );
 }
