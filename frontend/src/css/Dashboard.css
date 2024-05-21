@@ -3,7 +3,7 @@
   height: calc(100vh - 60px);
   background: wheat !important;
   display: grid;
-  grid-template-columns: 11rem auto 20rem;
+  grid-template-columns: 11rem auto;
   overflow: hidden;
 }
 
