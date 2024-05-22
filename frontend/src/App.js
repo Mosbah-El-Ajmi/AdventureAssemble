@@ -7,13 +7,12 @@ import SuiviMission from "./components/SuiviMissions.js";
 import Dashboard from "./components/Dashboard.js";
 import HeaderLoggedIn from "./components/HeaderLoggedIn.js";
 import LoginSigninPage from "./components/LoginSigninPage";
-import Progression from "./components/Progression.js";
 import Classement from "./components/Classement.js";
 import AuthProvider from "./components/auth.js";
 
 function App() {
     const location = useLocation();
-    const headerRoutes = ["/creer-mission", "/liste-missions", "/dashboard", "/progression", "/classement"];
+    const headerRoutes = ["/creer-mission", "/liste-missions", "/dashboard", "/classement"];
     const shouldShowLoggedInHeader = headerRoutes.some(route => location.pathname.startsWith(route));
 
     return (
@@ -26,7 +25,6 @@ function App() {
                     <Route path="/creer-mission" element={<CreerMissionPage />} />
                     <Route path="/liste-missions" element={<SuiviMission />} />
                     <Route path="/dashboard/*" element={<Dashboard />} />
-                    <Route path="/progression/*" element={<Progression />} />
                     <Route path="/classement/*" element={<Classement />} />
                 </Routes>
             </AuthProvider>
