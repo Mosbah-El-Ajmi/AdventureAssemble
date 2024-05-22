@@ -9,6 +9,7 @@ import HeaderLoggedIn from "./components/HeaderLoggedIn.js";
 import LoginSigninPage from "./components/LoginSigninPage";
 import Classement from "./components/Classement.js";
 import AuthProvider from "./components/auth.js";
+import ValiderMissions from "./components/ValiderMissions";
 
 function App() {
     const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/login-or-sign-in" element={<LoginSigninPage />} />
                     <Route path="/creer-mission" element={<CreerMissionPage />} />
                     <Route path="/liste-missions" element={<SuiviMission />} />
+                    <Route path="/validation" element={<ValiderMissions />} />
                     <Route path="/dashboard/*" element={<Dashboard />} />
                     <Route path="/classement/*" element={<Classement />} />
                 </Routes>
