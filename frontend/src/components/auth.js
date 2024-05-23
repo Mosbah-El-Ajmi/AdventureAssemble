@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
           localStorage.setItem("pseudo", 'None');
           localStorage.setItem("joueur_id", 'None');
         }
-        navigate("/dashboard");
+        navigate("/choix-joueur");
         return;
       };
        throw new Error(res.message);
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     setToken("");
     localStorage.removeItem("auth_token");
-    navigate("/login");
+    navigate("/login-or-sign-in");
   };
 
   return (

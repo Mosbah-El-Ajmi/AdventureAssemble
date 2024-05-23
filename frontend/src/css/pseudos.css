@@ -1,0 +1,17 @@
+.liste-pseudos h3 {
+    font-size: 1.4em;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.liste-pseudos ul {
+    display: block;
+    font-weight: Bold;
+    max-width: 300px;
+    text-align: center;
+    margin: auto;
+}
+
+.liste-pseudos li:hover {
+    background: orange;
+}
