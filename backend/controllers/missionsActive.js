@@ -205,3 +205,24 @@ exports.getMissionsActivesEnAttente = (req, res) => {
         res.status(500).json({ error: 'Mauvais token'});
     }
 };
+
+exports.updateStatut = (req, res) => {
+    const idMissions = req.params.id;
+    const statusMissions = req.params.status;
+
+    const sql = "UPDATE MissionsActives SET id_status = (?) WHERE id_mission_active = (?)";
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(sql, [statusMissions, idMissions], (err, result) => {
+            if (err) {
+                console.error('Erreur lors de la mise à jour de la description de la mission :', err);
+                res.status(500).json({ error: 'Erreur lors de la mise à jour de la description de la mission' });
+            } else {
+                res.json(result);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
+};
