@@ -17,7 +17,7 @@ exports.auth_id = (token, id) => {
     if (err) {
       return false;
     }
-    if (decodedToken.id_util === id) {
+    if (decodedToken.id_util == id) {
       return true;
     }
     return false;
