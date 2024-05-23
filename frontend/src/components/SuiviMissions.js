@@ -5,7 +5,7 @@ import axios from "axios";
 const ListeMissions = () => {
   const [missionsActive, setMissionsActive] = useState([]);
   const [selectedMission, setSelectedMission] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [setSelectedFile] = useState(null);
 
   useEffect(() => {
     axios
@@ -15,7 +15,7 @@ const ListeMissions = () => {
           localStorage.getItem("auth_token")
       )
       .then((response) => {
-        const sortedMissions = response.data.sort(
+        response.data.sort(
           (a, b) => a.id_status - b.id_status
         );
         setMissionsActive(response.data);
@@ -149,7 +149,7 @@ const ListeMissions = () => {
                 {missionActive.id_status === 2 && (
                   <img
                     src={missionActive.photo_url}
-                    alt="image mission"
+                    alt="preuve pour valider la missions"
                     className="cloudinary-image"
                   />
                 )}
