@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for macos14 (arm64)
 --
--- Host: localhost    Database: dev3
+-- Host: localhost    Database: dev
 -- ------------------------------------------------------
 -- Server version	8.3.0
 
@@ -147,6 +147,36 @@ INSERT INTO `Partie` VALUES (1,'kot','2024-03-19',1),(2,'kot','2024-03-19',1);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `playerhistory`
+--
+
+DROP TABLE IF EXISTS `playerhistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `playerhistory` (
+  `id_history` int NOT NULL AUTO_INCREMENT,
+  `id_joueur` int NOT NULL,
+  `id_partie` int NOT NULL,
+  `points` int NOT NULL,
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_history`),
+  KEY `id_joueur` (`id_joueur`),
+  KEY `id_partie` (`id_partie`),
+  CONSTRAINT `playerhistory_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `joueurs` (`id_joueur`),
+  CONSTRAINT `playerhistory_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `playerhistory`
+--
+
+LOCK TABLES `playerhistory` WRITE;
+/*!40000 ALTER TABLE `playerhistory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `playerhistory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Status`
 --
 
@@ -157,7 +187,7 @@ CREATE TABLE `Status` (
   `id_status` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +196,7 @@ CREATE TABLE `Status` (
 
 LOCK TABLES `Status` WRITE;
 /*!40000 ALTER TABLE `Status` DISABLE KEYS */;
-INSERT INTO `Status` VALUES (1,'active');
+INSERT INTO `Status` VALUES (1,'En cours'),(2,'En attente'),(3,'Réussie'),(4,'Abandonné');
 /*!40000 ALTER TABLE `Status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,39 +228,6 @@ INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test');
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-DROP TABLE IF EXISTS `playerhistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `playerhistory` (
-  `id_history` int NOT NULL AUTO_INCREMENT,
-  `id_joueur` int NOT NULL,
-  `id_partie` int NOT NULL,
-  `points` int NOT NULL,
-  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_history`),
-  KEY `id_joueur` (`id_joueur`),
-  KEY `id_partie` (`id_partie`),
-  CONSTRAINT `playerhistory_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `joueurs` (`id_joueur`),
-  CONSTRAINT `playerhistory_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `playerhistory`
---
-
-LOCK TABLES `playerhistory` WRITE;
-/*!40000 ALTER TABLE `playerhistory` DISABLE KEYS */;
-INSERT INTO `playerhistory` (`id_history`, `id_joueur`, `id_partie`, `points`, `timestamp`) VALUES
-(1, 1, 1, 100, '2023-01-01 10:00:00'),
-(2, 1, 2, 150, '2023-01-02 11:00:00'),
-(3, 2, 1, 200, '2023-01-03 12:00:00'),
-/*!40000 ALTER TABLE `playerhistory` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -239,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-23  2:18:24
+-- Dump completed on 2024-05-24 23:35:49
