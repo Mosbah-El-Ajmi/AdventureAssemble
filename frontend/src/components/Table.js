@@ -121,15 +121,15 @@ const Table = () => {
     <div className="Table">
       <h3>Tableau de Classement</h3>
       <table>
-      <thead>
-      <tr>
-        <th><button onClick={sortName}>Nom ↑</button></th>
-        <th><button onClick={sortPoints}>Points ↑</button></th>
-        <th><button onClick={sort24h}>Points 24H ↑</button></th>
-        <th><button onClick={sortFinies}>Missions Finies ↑</button></th>
-        <th><button onClick={sortLast}>Dernière Mission ↑</button></th>
-      </tr>
-      </thead>
+        <thead>
+          <tr>
+            <th><button onClick={sortName}>Nom ↑</button></th>
+            <th><button onClick={sortPoints}>Points ↑</button></th>
+            <th><button onClick={sort24h}>Points 24H ↑</button></th>
+            <th><button onClick={sortFinies}>Missions Finies ↑</button></th>
+            <th><button onClick={sortLast}>Dernière Mission ↑</button></th>
+          </tr>
+        </thead>
       <tbody id="content">
       {joueurs.map((val, key) => {
         return (

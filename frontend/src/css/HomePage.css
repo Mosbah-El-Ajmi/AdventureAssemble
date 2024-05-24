@@ -22,14 +22,25 @@
 
 .image-section {
   background: url("../images/OIG3.jpg") center center no-repeat;
-  background-size: cover;
+  background-size: 100%;
   width: 50%;
 }
 
 .text-section {
   background: #fff;
-  padding: 50px;
+  padding: 20px;
   width: 50%;
+  font-size: 0.7em;
+}
+
+@media only screen
+and (min-width : 800px){
+  .text-section {
+    background: #fff;
+    padding: 40px;
+    width: 50%;
+    font-size: 1em;
+  }
 }
 
 h1 {

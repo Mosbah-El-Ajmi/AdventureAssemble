@@ -3,8 +3,12 @@
   height: calc(100vh - 60px);
   background: wheat !important;
   display: grid;
-  grid-template-columns: 11rem auto;
+  grid-template-columns: 9rem auto;
   overflow: hidden;
+}
+
+.dashContainer {
+  grid-template-columns: 9rem auto;
 }
 
 .dashboard::-webkit-scrollbar {
