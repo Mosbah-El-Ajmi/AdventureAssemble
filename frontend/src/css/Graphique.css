@@ -8,3 +8,17 @@
 .parentContainer {
   width: 100%;
 }
+
+@media only screen and (max-width: 768px) {
+  .Graphiques {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .Graphiques {
+    flex-direction: row;
+    gap: 10%;
+  }
+}

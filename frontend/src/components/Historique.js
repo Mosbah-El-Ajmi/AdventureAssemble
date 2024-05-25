@@ -5,14 +5,13 @@ import "../css/Historique.css";
 
 const Historique = () => {
   const [history, setHistory] = useState([]);
+  const selectedPlayerId = localStorage.getItem("joueur_id");
 
   useEffect(() => {
     const fetchHistory = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/history" +
-            "/" +
-            localStorage.getItem("auth_token")
+          `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
         );
         setHistory(response.data);
       } catch (error) {
@@ -23,13 +22,20 @@ const Historique = () => {
     fetchHistory();
   }, []);
 
-  const data = useMemo(() => history, [history]);
+  const filteredHistory = useMemo(() => {
+    if (!selectedPlayerId) return history;
+    return history.filter(
+      (item) => item.id_joueur === parseInt(selectedPlayerId)
+    );
+  }, [history, selectedPlayerId]);
+
+  const data = useMemo(() => filteredHistory, [filteredHistory]);
 
   const columns = useMemo(
     () => [
       {
         Header: "Joueur",
-        accessor: "id_joueur", //pseudo
+        accessor: "pseudo",
       },
       {
         Header: "Partie",

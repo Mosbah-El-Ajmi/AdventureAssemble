@@ -50,11 +50,17 @@ export const GraphiquesProvider = ({ children }) => {
     const fetchLatestPoints = async () => {
       try {
         // Fetch data from backend API
+        const selectedPlayerId = localStorage.getItem("joueur_id");
+        if (!selectedPlayerId) return; // Exit if no player is selected
+
         const response = await axios.get(
-          "http://localhost:3001/history" +
-            "/" +
-            localStorage.getItem("auth_token")
+          `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
         );
+
+        const playerData = response.data.filter(
+          (item) => item.id_joueur === parseInt(selectedPlayerId)
+        );
+
         let totalPoints = 0;
         let totalGames = 0;
         let previousPoints = 0;
@@ -65,7 +71,7 @@ export const GraphiquesProvider = ({ children }) => {
         newGraphiquesData[1].series[0].data = [];
 
         // Loop through the response data
-        response.data.forEach((item) => {
+        playerData.forEach((item) => {
           // Update totalPoints with points from each id_partie
           totalPoints += item.points;
           totalGames++;
@@ -82,9 +88,9 @@ export const GraphiquesProvider = ({ children }) => {
         const averageScore = totalPoints / totalGames;
 
         // Find the latest id_partie
-        const latestPartie = response.data.reduce((latest, item) => {
+        const latestPartie = playerData.reduce((latest, item) => {
           return item.id_partie > latest.id_partie ? item : latest;
-        }, response.data[0]);
+        }, playerData[0]);
 
         const latestPoints = latestPartie.points;
         const valuePut = latestPoints.toString();

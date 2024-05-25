@@ -81,7 +81,7 @@ CREATE TABLE `Missions` (
 
 LOCK TABLES `Missions` WRITE;
 /*!40000 ALTER TABLE `Missions` DISABLE KEYS */;
-INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'escalade','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'Escalade','Grimpez jusqu\'en haut de la falaise et prenez une photo spectaculaire du sommet pour prouver votre exploit.',1,NULL,NULL,NULL,NULL,350,NULL),(9,'Chasse au chat','Trouvez un chat dans le voisinage et prenez une photo avec lui.',1,NULL,NULL,NULL,NULL,150,NULL),(10,'Nettoyage Express','Nettoyez la salle à manger de la soiré d\'hier il ne dois plus rien resté. Prend une photo pour prouver le résultat',1,NULL,NULL,NULL,NULL,400,NULL),(11,'Orientation','Trouve l\'eglise du village sans aide et prend la en photo.',1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'escalade','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'Escalade',"Grimpez jusqu'en haut de la falaise et prenez une photo spectaculaire du sommet pour prouver votre exploit.",1,NULL,NULL,NULL,NULL,350,NULL),(9,'Chasse au chat','Trouvez un chat dans le voisinage et prenez une photo avec lui.',1,NULL,NULL,NULL,NULL,150,NULL),(10,'Nettoyage Express','Nettoyez la salle à manger de la soiré d\'hier il ne dois plus rien resté. Prend une photo pour prouver le résultat',1,NULL,NULL,NULL,NULL,400,NULL),(11,'Orientation','Trouve l\'eglise du village sans aide et prend la en photo.',1,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Missions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,14 +157,15 @@ CREATE TABLE `playerhistory` (
   `id_history` int NOT NULL AUTO_INCREMENT,
   `id_joueur` int NOT NULL,
   `id_partie` int NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
   `points` int NOT NULL,
   `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_history`),
   KEY `id_joueur` (`id_joueur`),
   KEY `id_partie` (`id_partie`),
-  CONSTRAINT `playerhistory_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `joueurs` (`id_joueur`),
-  CONSTRAINT `playerhistory_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `playerhistory_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `Joueurs` (`id_joueur`),
+  CONSTRAINT `playerhistory_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `Partie` (`id_partie`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,6 +174,10 @@ CREATE TABLE `playerhistory` (
 
 LOCK TABLES `playerhistory` WRITE;
 /*!40000 ALTER TABLE `playerhistory` DISABLE KEYS */;
+INSERT INTO `playerhistory` VALUES
+(1, 1, 'Dead', 100, '2024-05-20 10:00:00'),
+(2, 2, 'Spider', 150, '2024-05-21 11:00:00'),
+(3, 3, 'Bat', 200, '2024-05-22 12:00:00');
 /*!40000 ALTER TABLE `playerhistory` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -1,34 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
 .dashContainer {
   width: calc(100% - 100px);
-  height: calc(100%-60px);
+  height: calc(100% - 60px);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-h1,
-h3 {
+
+.dashContainer h1,
+.dashContainer h3 {
   padding: 2.5%;
   margin: 1.5%;
+}
+
+/* Adjust h1 and h3 styles for different screen sizes */
+.dashContainer h1 {
+  font-size: 2em; /* Default font size for larger screens */
+}
+
+.dashContainer h3 {
+  font-size: 1.5em; /* Default font size for larger screens */
+}
+
+@media screen and (max-width: 768px) {
+  .dashContainer {
+    width: calc(100% - 68px);
+  }
+
+  .dashContainer h1 {
+    font-size: 1.75em; /* Slightly smaller for medium screens */
+  }
+
+  .dashContainer h3 {
+    font-size: 1.25em; /* Slightly smaller for medium screens */
+  }
 }
 
 @media screen and (max-width: 525px) {
   .dashContainer {
     width: calc(100% - 68px);
   }
+
+  .dashContainer h1,
+  .dashContainer h3 {
+    padding: 2%;
+    margin: 1%;
+  }
+
+  .dashContainer h1 {
+    font-size: 1.5em; /* Smaller font size for small screens */
+  }
+
+  .dashContainer h3 {
+    font-size: 1.125em; /* Smaller font size for small screens */
+  }
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 * {
   -ms-overflow-style: none;
-}
-::-webkit-scrollbar {
-  display: none;
 }
 
 @font-face {
   font-family: "Michroma";
   src: url("../fonts/Michroma-Regular.ttf") format("truetype");
 }
-* {
+
+body {
   font-family: "Michroma", sans-serif;
   text-align: center;
 }
