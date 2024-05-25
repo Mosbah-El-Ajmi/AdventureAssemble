@@ -91,7 +91,7 @@ function CreerLogSignPage() {
               </div>
               <div>
                 <label>Mot de passe:</label>
-                <textarea name="password" value={logData.password} onChange={handleChange} />
+                <input type="password" name="password" value={logData.password} onChange={handleChange} />
               </div>
               <button type="submit">Connection</button>
             </form>
@@ -112,7 +112,7 @@ function CreerLogSignPage() {
               </div>
               <div>
                 <label>Mot de passe:</label>
-                <textarea name="password" value={signData.password} onChange={handleChange} />
+                <input type="password" name="password" value={signData.password} onChange={handleChange} />
               </div>
               <div>
                 <label>Addresse e-mail:</label>

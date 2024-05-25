@@ -19,7 +19,7 @@ function HeaderLoggedIn() {
       };
     }
   }, []);
-
+   
   const handleMouseEnter = () => {
     const menuContainer = document.getElementById("menuContainerConnected");
     if (menuContainer) {
@@ -55,7 +55,6 @@ function HeaderLoggedIn() {
             </li>
           </ul>
           <div className="account-icon" id="account-icon">
-
           </div>
           <div className="menuContainer connected" id="menuContainerConnected">
             <ul>

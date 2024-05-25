@@ -18,6 +18,14 @@ function Menu() {
   const location = useLocation();
   const activeItem = location.pathname;
 
+  // Vérifier la présence de "joueur_id" dans le localStorage
+  const joueurId = localStorage.getItem("joueur_id");
+
+  // Si "joueur_id" n'est pas présent, ne pas afficher le menu
+  if (!joueurId) {
+    return null;
+  }
+    
   return (
     <menu>
       <ul id="mainMenu">
@@ -81,3 +89,4 @@ function Menu() {
 }
 
 export default Menu;
+
