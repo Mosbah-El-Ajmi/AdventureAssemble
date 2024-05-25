@@ -36,18 +36,6 @@ function Menu() {
             <span className="linkName">Classement</span>
           </Link>
         </li>
-        <li className={activeItem === "/liste-missions" ? "active" : ""}>
-          <Link to="/liste-missions">
-            <FaListCheck />
-            <span className="linkName">Suivi des misssions</span>
-          </Link>
-        </li>
-        <li className={activeItem === "/validation" ? "active" : ""}>
-          <Link to="/validation">
-            <GrValidate />
-            <span className="linkName">Valider missions</span>
-          </Link>
-        </li>
         <li className={activeItem === "/history" ? "active" : ""}>
           <Link to="/history">
             <GiTimeBomb />
