@@ -175,9 +175,10 @@ CREATE TABLE `playerhistory` (
 LOCK TABLES `playerhistory` WRITE;
 /*!40000 ALTER TABLE `playerhistory` DISABLE KEYS */;
 INSERT INTO `playerhistory` VALUES
-(1, 1, 'Dead', 100, '2024-05-20 10:00:00'),
-(2, 2, 'Spider', 150, '2024-05-21 11:00:00'),
-(3, 3, 'Bat', 200, '2024-05-22 12:00:00');
+(1, 2, 1, 'DoReMi', 300, '2024-05-20 10:00:00'),
+(2, 2, 2, 'DoReMi', 350, '2024-05-21 11:00:00'),
+(3, 2, 3, 'DoReMi', 500, '2024-05-22 12:00:00');
+
 /*!40000 ALTER TABLE `playerhistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
