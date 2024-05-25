@@ -3,25 +3,17 @@ const mysql = require("mysql");
 const {auth, auth_id} = require('./auth_back.js');
 
 const connection = require('../DbConnection');
-/*
-// Fonction pour récupérer toutes les missions active
-exports.getAllMissionsActives = (req, res) => {
-    const query = 'SELECT id_mission_active, id_joueur, id_mission, date_debut, date_fin, id_status FROM MissionsActives';
-    connection.query(query, (error, results) => {
-        if (error) {
-            console.error('Erreur lors de la récupération des missions active :', error);
-            res.status(500).json({ error: 'Erreur lors de la récupération des missions active' });
-        } else {
-            res.json(results);
-        }
-    });
-};
-*/
+
 //recupére les missions d'un joueur avec son id
 exports.getMissionsActivesByJoueur = (req, res) => {
     const id = req.params.id
     const tok = req.params.tok;
-    const query = 'SELECT id_mission_active, id_joueur, id_mission, date_debut, date_fin, id_status FROM MissionsActives WHERE id_joueur = ?';
+    const query = `
+        SELECT ma.id_mission_active, ma.id_joueur, ma.id_mission, ma.date_debut, ma.date_fin, ma.id_status, ma.photo_url, m.description_mission AS description_mission, m.nom_mission AS nom_mission, m.points AS points
+        FROM MissionsActives ma
+        JOIN Missions m ON ma.id_mission = m.id_mission
+        WHERE ma.id_joueur = ?;
+    `;
     if(auth(tok)){
         connection.query(query, [id], (error, results) => {
             if (error) {
@@ -184,15 +176,17 @@ exports.updatePhoto = (req, res) => {
 };
 
 exports.getMissionsActivesEnAttente = (req, res) => {
+    const id = req.params.id
     const query = `
         SELECT ma.id_mission_active, ma.id_joueur, ma.id_mission, ma.date_debut, ma.date_fin, ma.id_status, ma.photo_url, m.description_mission AS description_mission, m.nom_mission AS nom_mission
         FROM MissionsActives ma
         JOIN Missions m ON ma.id_mission = m.id_mission
-        WHERE ma.id_status = 2;
+        WHERE ma.id_status = 2
+        AND ma.id_joueur <> ?;
     `;
     const tok = req.params.tok;
     if(auth(tok)){
-        connection.query(query, (error, results) => {
+        connection.query(query, [id], (error, results) => {
             if (error) {
                 console.error('Erreur lors de la récupération des missions actives avec le status 2:', error);
                 res.status(500).json({ error: 'Erreur lors de la récupération des missions actives avec le status 2' });

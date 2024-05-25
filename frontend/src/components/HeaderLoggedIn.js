@@ -42,7 +42,10 @@ function HeaderLoggedIn() {
         </div>
         <ul>
           <li>
-            <a href="liste-missions">Liste Mission</a>
+            <a href="liste-missions">Suivi des missions</a>
+          </li>
+          <li>
+            <a href="validation">Valider missions</a>
           </li>
           <li>
             <a href="dashboard">Dashboard</a>
@@ -50,9 +53,12 @@ function HeaderLoggedIn() {
           <li>
             <a href="creer-mission">Créer Mission</a>
           </li>
+          <li>
+            <a href="choix-joueur">Choisir Joueur</a>
+          </li>
         </ul>
         <div className="account-icon" id="account-icon">
-          <img src={accountIcon} alt="Account" />
+          <img src={accountIcon} alt="Account" />{" "}
         </div>
         <div className="menuContainer connected" id="menuContainerConnected">
           <ul>

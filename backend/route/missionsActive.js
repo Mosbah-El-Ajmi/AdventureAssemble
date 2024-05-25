@@ -12,6 +12,6 @@ router.put('/validation/:id/:tok', updateStatutV);
 router.put('/abandon/:id/:tok', updateStatutL);
 router.put('/status/:id/:status/:tok', updateStatut);
 router.put('/photo/:id/:tok', updatePhoto);
-router.get('/EnAttente/:tok', getMissionsActivesEnAttente);
+router.get('/EnAttente/:id/:tok', getMissionsActivesEnAttente);
 
 module.exports = router;

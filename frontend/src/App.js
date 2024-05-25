@@ -21,6 +21,7 @@ function App() {
     "/dashboard",
     "/classement",
     "/history",
+    "/validation",
   ];
   const shouldShowLoggedInHeader = headerRoutes.some((route) =>
     location.pathname.startsWith(route)

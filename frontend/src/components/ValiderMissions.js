@@ -7,9 +7,10 @@ const ValidationMissions = () => {
     const [selectedMission, setSelectedMission] = useState(null);
 
     useEffect(() => {
+        const joueurId = localStorage.getItem('joueur_id');
         axios
             .get(
-                "http://localhost:3001/missions_active/EnAttente" +
+                `http://localhost:3001/missions_active/EnAttente/${joueurId}` +
                 "/" +
                 localStorage.getItem("auth_token")
             )
