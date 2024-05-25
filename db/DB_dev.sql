@@ -42,7 +42,7 @@ CREATE TABLE `Joueurs` (
 
 LOCK TABLES `Joueurs` WRITE;
 /*!40000 ALTER TABLE `Joueurs` DISABLE KEYS */;
-INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',0),(2,2,3,'DoReMi',NULL);
+INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',0),(2,3,3,'DoReMi',NULL);
 /*!40000 ALTER TABLE `Joueurs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +214,7 @@ CREATE TABLE `Utilisateur` (
   `mail` varchar(100) DEFAULT NULL,
   `mot_de_passe` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_compte`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `Utilisateur` (
 
 LOCK TABLES `Utilisateur` WRITE;
 /*!40000 ALTER TABLE `Utilisateur` DISABLE KEYS */;
-INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test'),(2,'Fasol','Rémi','remi.fasol@exemple.com','lassi');
+INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test'),(2,'Fasol','Rémi','remi.fasol@exemple.com','lassi'),(3,'Fasol','Fasol','remi.fasol@exemple.com','2b797bd4a4d222d67a6be120805c6e070f7630ab1029cded30f6272f715773cca5601377bbba3c2e45af4a76b85e662c48d4274b2d3f7a12f5259d0b65f7c11d');
 /*!40000 ALTER TABLE `Utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -236,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-25 18:50:28
+-- Dump completed on 2024-05-25 21:03:26
