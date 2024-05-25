@@ -15,9 +15,28 @@
   display: none;
 }
 
-@media only screen and (max-width: 525px) {
+/* Media Query for Small Screens */
+@media only screen and (max-width: 425px) {
   .dashboard {
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
+  }
+
+  .dashContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Media Query for Medium Screens */
+@media only screen and (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 6rem auto;
+  }
+
+  .dashContainer {
+    grid-template-columns: 6rem auto;
   }
 }

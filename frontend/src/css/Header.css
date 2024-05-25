@@ -1,14 +1,13 @@
-/* header.css */
 @font-face {
   font-family: "Michroma";
   src: url("../fonts/Michroma-Regular.ttf") format("truetype");
-  /* Ajoutez d'autres variantes de police ici si nÃ©cessaire */
 }
 
 header {
   background-color: white;
   padding: 10px;
   max-height: 60px;
+  box-sizing: border-box;
 }
 
 nav {
@@ -16,21 +15,22 @@ nav {
   align-items: center;
   justify-content: space-between;
   max-height: 40px;
+  width: 100%;
 }
 
 .logo img {
-  width: 60px; /* Ajustez la taille du logo selon vos besoins */
+  width: 60px;
 }
 
 ul {
   list-style-type: none;
   display: flex;
-  margin: 0; /* Réduit la marge à zéro */
-  padding: 0; /* Réduit le padding à zéro */
+  margin: 0;
+  padding: 0;
 }
 
 li {
-  margin-left: 20px; /* Modifier la marge gauche pour l'espace entre les éléments */
+  margin-left: 20px;
 }
 
 a {
@@ -43,17 +43,19 @@ a:hover {
 }
 
 .account-icon {
-  margin-left: auto; /* Aligne l'icône du compte à droite */
+  margin-left: auto;
+  margin-right: 5px;
 }
 
 .account-icon img {
-  width: 60px; /* Ajustez la taille de l'icône du compte selon vos besoins */
+  width: 60px;
   transition: transform 0.5s ease;
   cursor: pointer;
   font-size: 12px;
-  margin: 0px 10px;
+  margin: 0 10px;
 }
 
+/* Menu container initially hidden */
 .menuContainer {
   position: absolute;
   margin-top: 5px;
@@ -65,8 +67,9 @@ a:hover {
   width: 180px;
   box-shadow: 5px 5px 10px rgba(255, 0, 0, 0.6);
   z-index: 1;
-  transform: translatex(300px);
-  transition: transform 0.3s cubic-bezier(0.17, 0.81, 0.38, 1.18);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
 }
 
 .menuContainer ul {
@@ -112,4 +115,43 @@ a:hover {
 
 .menuContainer .not-connected {
   background: blueviolet;
+}
+
+/* Revealing menu container on hover */
+.account-icon:hover + .menuContainer {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .account-icon {
+    margin-right: 10px;
+  }
+
+  .menuContainer {
+    right: 5px;
+    top: 40px;
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .logo img {
+    width: 40px;
+  }
+
+  li {
+    margin-left: 10px;
+  }
+
+  .account-icon img {
+    width: 40px;
+  }
+
+  .menuContainer {
+    right: 0;
+    top: 40px;
+    width: 130px;
+  }
 }

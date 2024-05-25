@@ -42,7 +42,9 @@ CREATE TABLE `Joueurs` (
 
 LOCK TABLES `Joueurs` WRITE;
 /*!40000 ALTER TABLE `Joueurs` DISABLE KEYS */;
-INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',0);
+INSERT INTO `Joueurs` VALUES (1, 1, 1, 'Dead', 100),
+(2, 1, 2, 'Spider', 200),
+(3, 2, 1, 'Bat', 300);
 /*!40000 ALTER TABLE `Joueurs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +83,9 @@ CREATE TABLE `Missions` (
 
 LOCK TABLES `Missions` WRITE;
 /*!40000 ALTER TABLE `Missions` DISABLE KEYS */;
-INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'escalade','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'testnom','test description',1,NULL,1,1,1,90,NULL),(9,'testnom','test description',1,NULL,1,1,1,90,NULL),(10,'testnom','test description',1,NULL,1,1,1,90,NULL),(11,'testnom','test description',1,NULL,1,1,1,90,NULL),(12,NULL,'test description',1,NULL,1,1,1,90,NULL),(13,NULL,'test description',1,NULL,1,1,1,90,NULL),(14,NULL,'test description',1,NULL,1,1,1,90,NULL),(15,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(16,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(17,'test de nom 7','description mission 7',1,NULL,1,1,1,800,NULL),(18,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(19,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(20,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(21,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `Missions` VALUES (1, 'course', 'description course', 1, '2024-05-01', 1, 2, 1, 250, 3),
+(2, 'escalade', 'description escalade', 1, '2024-05-02', 2, 1, 2, 150, 2),
+(3, 'orientation', 'description orientation', 1, '2024-05-03', 1, 3, 1, 300, 4);
 /*!40000 ALTER TABLE `Missions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +120,9 @@ CREATE TABLE `MissionsActives` (
 
 LOCK TABLES `MissionsActives` WRITE;
 /*!40000 ALTER TABLE `MissionsActives` DISABLE KEYS */;
-INSERT INTO `MissionsActives` VALUES (1,1,1,NULL,NULL,1,NULL),(2,1,3,NULL,NULL,1,NULL),(3,1,2,NULL,NULL,1,NULL);
+INSERT INTO `MissionsActives` VALUES (1, 1, 1, '2024-05-10', '2024-05-11', 1, NULL),
+(2, 2, 2, '2024-05-12', '2024-05-13', 2, NULL),
+(3, 3, 3, '2024-05-14', '2024-05-15', 3, NULL);
 /*!40000 ALTER TABLE `MissionsActives` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +148,9 @@ CREATE TABLE `Partie` (
 
 LOCK TABLES `Partie` WRITE;
 /*!40000 ALTER TABLE `Partie` DISABLE KEYS */;
-INSERT INTO `Partie` VALUES (1,'kot','2024-03-19',1),(2,'kot','2024-03-19',1);
+INSERT INTO `Partie` VALUES (1, 'kot', '2024-03-19', 1),
+(2, 'game', '2024-04-19', 1),
+(3, 'match', '2024-05-19', 0);
 /*!40000 ALTER TABLE `Partie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,14 +165,15 @@ CREATE TABLE `playerhistory` (
   `id_history` int NOT NULL AUTO_INCREMENT,
   `id_joueur` int NOT NULL,
   `id_partie` int NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
   `points` int NOT NULL,
   `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_history`),
   KEY `id_joueur` (`id_joueur`),
   KEY `id_partie` (`id_partie`),
-  CONSTRAINT `playerhistory_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `joueurs` (`id_joueur`),
-  CONSTRAINT `playerhistory_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `playerhistory_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `Joueurs` (`id_joueur`),
+  CONSTRAINT `playerhistory_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `Partie` (`id_partie`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,6 +182,10 @@ CREATE TABLE `playerhistory` (
 
 LOCK TABLES `playerhistory` WRITE;
 /*!40000 ALTER TABLE `playerhistory` DISABLE KEYS */;
+INSERT INTO `playerhistory` VALUES
+(1, 1, 'Dead', 100, '2024-05-20 10:00:00'),
+(2, 2, 'Spider', 150, '2024-05-21 11:00:00'),
+(3, 3, 'Bat', 200, '2024-05-22 12:00:00');
 /*!40000 ALTER TABLE `playerhistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,7 +236,9 @@ CREATE TABLE `Utilisateur` (
 
 LOCK TABLES `Utilisateur` WRITE;
 /*!40000 ALTER TABLE `Utilisateur` DISABLE KEYS */;
-INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test');
+INSERT INTO `Utilisateur` VALUES (1, 'Doe', 'John', 'john.doe@example.com', 'test'),
+(2, 'Smith', 'Jane', 'jane.smith@example.com', 'test123'),
+(3, 'Brown', 'Charlie', 'charlie.brown@example.com', 'password');
 /*!40000 ALTER TABLE `Utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

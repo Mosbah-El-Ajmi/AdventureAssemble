@@ -7,44 +7,48 @@ import { GrClose } from "react-icons/gr";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
 
-const idPartie = 2;
-
 const Carte = ({ graphiquesData }) => {
   const [expanded, setExpanded] = useState(false);
   const [pseudo, setPseudo] = useState("");
   const [timestamps, setTimestamps] = useState([]);
+  const selectedPlayerId = localStorage.getItem("joueur_id");
 
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:3001/joueurs/Partie/${idPartie}/${localStorage.getItem(
-          "auth_token"
-        )}`
-      )
-      .then((response) => {
-        if (response.data.length > 0) {
-          setPseudo(response.data[0].pseudo);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching player name:", error);
-      });
+    if (selectedPlayerId) {
+      // Fetch player name based on selected player ID
+      axios
+        .get(
+          `http://localhost:3001/joueurs/id/${selectedPlayerId}/${localStorage.getItem(
+            "auth_token"
+          )}`
+        )
+        .then((response) => {
+          if (response.data.length > 0) {
+            setPseudo(response.data[0].pseudo);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching player name:", error);
+        });
 
-    // Fetch player history based on auth_token
-    axios
-      .get(
-        `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
-      )
-      .then((response) => {
-        if (response.data.length > 0) {
-          const fetchedTimestamps = response.data.map((item) => item.timestamp);
-          setTimestamps(fetchedTimestamps);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching player history:", error);
-      });
-  }, []);
+      // Fetch player history based on selected player ID
+      axios
+        .get(
+          `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
+        )
+        .then((response) => {
+          if (response.data.length > 0) {
+            const fetchedTimestamps = response.data.map(
+              (item) => item.timestamp
+            );
+            setTimestamps(fetchedTimestamps);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching player history:", error);
+        });
+    }
+  }, [selectedPlayerId]);
 
   return (
     <LayoutGroup>

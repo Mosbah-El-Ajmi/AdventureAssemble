@@ -1,12 +1,13 @@
 .CompactCard {
   margin: 1rem;
-  width: 25rem;
+  width: 100%;
   display: flex;
-  height: 10rem !important;
+  height: auto;
   border-radius: 0.7rem;
   color: white;
   cursor: pointer;
   padding: 1rem;
+  box-sizing: border-box; /* Added to ensure padding is included in width */
 }
 
 .CompactCard:hover {
@@ -65,19 +66,21 @@
 
 .ExpandedCard {
   position: absolute;
-  width: 70%;
-  height: 70vh;
+  width: 90%;
+  height: auto;
+  max-height: 70vh;
   z-index: 9;
-  left: 20%;
-  bottom: 20%;
-  top: 20%;
-  right: 20%;
+  left: 5%;
+  bottom: 5%;
+  top: 5%;
+  right: 5%;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+  box-sizing: border-box;
 }
 
 .ExpandedCard > span:nth-of-type(1) {
@@ -93,5 +96,23 @@
 }
 
 .chartContainer {
-  width: 65%;
+  width: 100%;
+}
+
+@media only screen and (min-width: 769px) {
+  .CompactCard {
+    width: 25rem;
+  }
+
+  .ExpandedCard {
+    width: 70%;
+    left: 20%;
+    bottom: 20%;
+    top: 20%;
+    right: 20%;
+  }
+
+  .chartContainer {
+    width: 65%;
+  }
 }

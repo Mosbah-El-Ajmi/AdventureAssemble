@@ -1,8 +1,10 @@
 .historique-container {
   padding: 20px;
   border-radius: 8px;
-  min-width: 800px;
   margin: 20px auto;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1000px; /* Added for responsiveness */
 }
 
 .historique-container h1 {
@@ -33,4 +35,25 @@
 
 .history-table tbody tr:hover {
   background-color: #ddd;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .historique-container {
+    padding: 10px;
+  }
+
+  .history-table th,
+  .history-table td {
+    padding: 5px;
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .history-table th,
+  .history-table td {
+    padding: 2px;
+    font-size: 12px; /* Further adjust font size for smaller screens */
+  }
 }

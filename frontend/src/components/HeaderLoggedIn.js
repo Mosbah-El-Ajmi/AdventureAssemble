@@ -35,36 +35,35 @@ function HeaderLoggedIn() {
   };
 
   return (
-      <header>
-        <nav>
-          <div className="logo">
-            <img src={logo} alt="Logo" />
-          </div>
+    <header>
+      <nav>
+        <div className="logo">
+          <img src={logo} alt="Logo" />
+        </div>
+        <ul>
+          <li>
+            <a href="liste-missions">Liste Mission</a>
+          </li>
+          <li>
+            <a href="dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="creer-mission">Créer Mission</a>
+          </li>
+        </ul>
+        <div className="account-icon" id="account-icon">
+          <img src={accountIcon} alt="Account" />
+        </div>
+        <div className="menuContainer connected" id="menuContainerConnected">
           <ul>
-            <li>
-              <a href="liste-missions">Liste Mission</a>
-            </li>
-            <li>
-              <a href="dashboard">Dashboard</a>
-            </li>
-            <li>
-              <a href="creer-mission">Créer Mission</a>
-            </li>
+            <li>Compte</li>
+            <li>Parametres</li>
+            <li>Se Deconnecter</li>
           </ul>
-          <div className="account-icon" id="account-icon">
-
-          </div>
-          <div className="menuContainer connected" id="menuContainerConnected">
-            <ul>
-              <li>Compte</li>
-              <li>Parametres</li>
-              <li>Se Deconnecter</li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
+    </header>
   );
 }
 
 export default HeaderLoggedIn;
-
