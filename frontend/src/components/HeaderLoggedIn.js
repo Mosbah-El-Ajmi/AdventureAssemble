@@ -53,6 +53,9 @@ function HeaderLoggedIn() {
             <li>
               <a href="creer-mission">Créer Mission</a>
             </li>
+            <li>
+              <a href="choix-joueur">Choisir Joueur</a>
+            </li>
           </ul>
           <div className="account-icon" id="account-icon">
           </div>
