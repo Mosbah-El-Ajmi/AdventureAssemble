@@ -15,7 +15,7 @@ import ChoixJoueur from "./components/choixJoueur.js";
 
 function App() {
     const location = useLocation();
-    const headerRoutes = ["/creer-mission", "/liste-missions", "/dashboard", "/classement"];
+    const headerRoutes = ["/creer-mission", "/liste-missions", "/dashboard", "/classement", "/validation"];
     const shouldShowLoggedInHeader = headerRoutes.some(route => location.pathname.startsWith(route));
 
     return (
