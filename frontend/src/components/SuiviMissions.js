@@ -5,7 +5,7 @@ import axios from "axios";
 const ListeMissions = () => {
   const [missionsActive, setMissionsActive] = useState([]);
   const [selectedMission, setSelectedMission] = useState(null);
-  const [setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     axios
