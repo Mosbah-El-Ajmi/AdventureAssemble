@@ -42,7 +42,7 @@ CREATE TABLE `Joueurs` (
 
 LOCK TABLES `Joueurs` WRITE;
 /*!40000 ALTER TABLE `Joueurs` DISABLE KEYS */;
-INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',0);
+INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',0),(2,2,3,'DoReMi',NULL);
 /*!40000 ALTER TABLE `Joueurs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ CREATE TABLE `Missions` (
 
 LOCK TABLES `Missions` WRITE;
 /*!40000 ALTER TABLE `Missions` DISABLE KEYS */;
-INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'escalade','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'testnom','test description',1,NULL,1,1,1,90,NULL),(9,'testnom','test description',1,NULL,1,1,1,90,NULL),(10,'testnom','test description',1,NULL,1,1,1,90,NULL),(11,'testnom','test description',1,NULL,1,1,1,90,NULL),(12,NULL,'test description',1,NULL,1,1,1,90,NULL),(13,NULL,'test description',1,NULL,1,1,1,90,NULL),(14,NULL,'test description',1,NULL,1,1,1,90,NULL),(15,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(16,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(17,'test de nom 7','description mission 7',1,NULL,1,1,1,800,NULL),(18,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(19,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(20,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL),(21,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'escalade','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'Escalade','Grimpez jusqu\'en haut de la falaise et prenez une photo spectaculaire du sommet pour prouver votre exploit.',1,NULL,NULL,NULL,NULL,350,NULL),(9,'Chasse au chat','Trouvez un chat dans le voisinage et prenez une photo avec lui.',1,NULL,NULL,NULL,NULL,150,NULL),(10,'Nettoyage Express','Nettoyez la salle à manger de la soiré d\'hier il ne dois plus rien resté. Prend une photo pour prouver le résultat',1,NULL,NULL,NULL,NULL,400,NULL),(11,'Orientation','Trouve l\'eglise du village sans aide et prend la en photo.',1,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Missions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +107,7 @@ CREATE TABLE `MissionsActives` (
   CONSTRAINT `missionsactives_ibfk_1` FOREIGN KEY (`id_joueur`) REFERENCES `Joueurs` (`id_joueur`),
   CONSTRAINT `missionsactives_ibfk_2` FOREIGN KEY (`id_mission`) REFERENCES `Missions` (`id_mission`),
   CONSTRAINT `missionsactives_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `Status` (`id_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +116,7 @@ CREATE TABLE `MissionsActives` (
 
 LOCK TABLES `MissionsActives` WRITE;
 /*!40000 ALTER TABLE `MissionsActives` DISABLE KEYS */;
-INSERT INTO `MissionsActives` VALUES (1,1,1,NULL,NULL,1,NULL),(2,1,3,NULL,NULL,1,NULL),(3,1,2,NULL,NULL,1,NULL);
+INSERT INTO `MissionsActives` VALUES (1,1,1,NULL,NULL,2,NULL),(2,1,3,NULL,NULL,2,'https://res.cloudinary.com/dyowth3mr/image/upload/v1716630931/GETG/sac2nsqgjds0wd8pjjp0.jpg'),(3,1,2,NULL,NULL,1,NULL),(4,2,8,NULL,NULL,1,NULL),(5,2,9,NULL,NULL,1,NULL),(6,2,10,NULL,NULL,1,NULL),(7,2,11,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `MissionsActives` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +133,7 @@ CREATE TABLE `Partie` (
   `date_creation` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_partie`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +142,7 @@ CREATE TABLE `Partie` (
 
 LOCK TABLES `Partie` WRITE;
 /*!40000 ALTER TABLE `Partie` DISABLE KEYS */;
-INSERT INTO `Partie` VALUES (1,'kot','2024-03-19',1),(2,'kot','2024-03-19',1);
+INSERT INTO `Partie` VALUES (1,'kot','2024-03-19',1),(2,'kot','2024-03-19',1),(3,'Musique','2024-05-24',1);
 /*!40000 ALTER TABLE `Partie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +214,7 @@ CREATE TABLE `Utilisateur` (
   `mail` varchar(100) DEFAULT NULL,
   `mot_de_passe` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_compte`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `Utilisateur` (
 
 LOCK TABLES `Utilisateur` WRITE;
 /*!40000 ALTER TABLE `Utilisateur` DISABLE KEYS */;
-INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test');
+INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test'),(2,'Fasol','Rémi','remi.fasol@exemple.com','lassi');
 /*!40000 ALTER TABLE `Utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -236,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-24 23:35:49
+-- Dump completed on 2024-05-25 18:50:28
