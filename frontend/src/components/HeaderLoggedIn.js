@@ -42,7 +42,10 @@ function HeaderLoggedIn() {
           </div>
           <ul>
             <li>
-              <a href="liste-missions">Liste Mission</a>
+              <a href="liste-missions">Suivi des missions</a>
+            </li>
+            <li>
+              <a href="validation">Valider missions</a>
             </li>
             <li>
               <a href="dashboard">Dashboard</a>

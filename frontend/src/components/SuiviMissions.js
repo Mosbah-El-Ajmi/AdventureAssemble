@@ -1,6 +1,7 @@
 import "../css/SuiviMissions.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Menu from "./Menu";
 
 const ListeMissions = () => {
   const [missionsActive, setMissionsActive] = useState([]);
@@ -8,9 +9,10 @@ const ListeMissions = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
+    const joueurId = localStorage.getItem('joueur_id');
     axios
       .get(
-        "http://localhost:3001/missions_active" +
+        `http://localhost:3001/missions_active/joueur/${joueurId}` +
           "/" +
           localStorage.getItem("auth_token")
       )
@@ -134,6 +136,7 @@ const ListeMissions = () => {
             onClick={() => handleClick(missionActive.id_mission_active)}
           >
             <h2>{missionActive.nom_mission}</h2>
+            <h3>{missionActive.points} Points</h3>
             {selectedMission === missionActive.id_mission_active && (
               <>
                 <p>{missionActive.description_mission}</p>
