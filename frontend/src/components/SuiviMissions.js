@@ -1,7 +1,6 @@
 import "../css/SuiviMissions.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Menu from "./Menu";
 
 const ListeMissions = () => {
   const [missionsActive, setMissionsActive] = useState([]);
@@ -39,7 +38,7 @@ const ListeMissions = () => {
           localStorage.getItem("auth_token")
       )
       .then((response) => {
-        console.log("Mission status updated successfully:", response);
+        console.log("Mission mise a jour:", response);
         // Met à jour de l'état local de la mission
         const updatedMissions = missionsActive
           .map((missionActive) =>
@@ -51,7 +50,7 @@ const ListeMissions = () => {
         setMissionsActive(updatedMissions);
       })
       .catch((error) => {
-        console.error("Error updating mission status:", error);
+        console.error("Erreur lors de la mise a jour du status de la mission:", error);
       });
   };
 
@@ -63,7 +62,7 @@ const ListeMissions = () => {
           localStorage.getItem("auth_token")
       )
       .then((response) => {
-        console.log("Mission status updated successfully:", response);
+        console.log("Mission mise a jour:", response);
         // Met à jour de l'état local de la mission
         const updatedMissions = missionsActive
           .map((missionActive) =>
@@ -75,7 +74,7 @@ const ListeMissions = () => {
         setMissionsActive(updatedMissions);
       })
       .catch((error) => {
-        console.error("Error updating mission status:", error);
+        console.error("Erreur lors de la mise a jour du status de la mission:", error);
       });
   };
 
@@ -108,14 +107,14 @@ const ListeMissions = () => {
           { url: imageUrl }
         )
         .then((response) => {
-          console.log("Mission status updated successfully:", response);
+          console.log("L'url de la photo a bien été mis a jour:", response);
         })
 
         .catch((error) => {
-          console.error("Error updating mission status:", error);
+          console.error("Il y a eu une erreur lors de la mise a jour de l'url de la photo:", error);
         });
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error("Erreur quand la photo est posté:", error);
     }
   };
 
@@ -142,6 +141,7 @@ const ListeMissions = () => {
                 <p>{missionActive.description_mission}</p>
                 {missionActive.id_status === 1 && (
                   <input
+                    className="input-image"
                     type="file"
                     onClick={(e) => {
                       e.stopPropagation();

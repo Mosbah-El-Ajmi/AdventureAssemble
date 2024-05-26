@@ -21,7 +21,7 @@ const ValidationMissions = () => {
                 setMissionsActive(response.data);
             })
             .catch((error) => {
-                console.error("Error fetching missions:", error);
+                console.error("Erreur lors de la recupération des missions:", error);
             });
     }, []);
 
@@ -35,7 +35,7 @@ const ValidationMissions = () => {
         axios
             .put(`http://localhost:3001/missions_active/status/${missionId}/${statusId}/${token}`)
             .then((response) => {
-                console.log("Mission status updated successfully:", response);
+                console.log("Le status de la mission a bien été changé:", response);
                 // Met à jour de l'état local de la mission
                 const updatedMissions = missionsActive
                     .map((missionActive) =>
@@ -47,7 +47,7 @@ const ValidationMissions = () => {
                 setMissionsActive(updatedMissions);
             })
             .catch((error) => {
-                console.error("Error updating mission status:", error);
+                console.error("Il y a eu une erreur lors du changement de status de la mission:", error);
             });
 
         axios
@@ -67,7 +67,7 @@ const ValidationMissions = () => {
         axios
             .put(`http://localhost:3001/missions_active/status/${missionId}/${statusId}/${token}`)
             .then((response) => {
-                console.log("Mission status updated successfully:", response);
+                console.log("Le status de la mission a bien été changé:", response);
                 // Met à jour de l'état local de la mission
                 const updatedMissions = missionsActive
                     .map((missionActive) =>
@@ -79,7 +79,7 @@ const ValidationMissions = () => {
                 setMissionsActive(updatedMissions);
             })
             .catch((error) => {
-                console.error("Error updating mission status:", error);
+                console.error("Il y a eu une erreur lors du changement de status de la mission:", error);
             });
     };
 
