@@ -5,7 +5,7 @@ const {getAllUtilisateurs, postUtilisateurs, getToken} = require('../controllers
 
 router.get('/:tok', getAllUtilisateurs);
 router.post('/', postUtilisateurs);
-router.get('/auth/:name/:password', getToken);
+router.get('/auth/:name/:surname/:password', getToken);
 
 
 

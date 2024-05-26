@@ -9,13 +9,15 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const loginAction = async (data) => {
     try {
-      const response = await fetch("http://localhost:3001/utilisateurs/auth/"+data.name+"/"+data.password);
+      console.log(data);
+      const response = await fetch("http://localhost:3001/utilisateurs/auth/"+data.name+"/"+data.surname+"/"+data.password);
       const res = await response.json();
       if (res.token) {
         setUser(data.name);
         setToken(res.token);
         localStorage.setItem("auth_token", res.token);
         localStorage.setItem("nom", res.nom);
+        localStorage.setItem("prenom", res.prenom);
         localStorage.setItem("util_id", res.id);
         try {
           const response2 = await fetch("http://localhost:3001/joueurs/utilisateur/"+localStorage.getItem('util_id')+'/'+localStorage.getItem('auth_token'));

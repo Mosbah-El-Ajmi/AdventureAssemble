@@ -26,18 +26,19 @@ function CreerLogSignPage() {
   const auth = useAuth();
   const handleLogin = (e) => {
     e.preventDefault();
-    if(document.getElementsByName("name").length > 0 && logData.name !== '' && logData.password !== ''){
+    if(document.getElementsByName("name").length > 0 && logData.name !== '' && logData.surname !== '' && logData.password !== ''){
       auth.loginAction(logData);
       document.getElementsByName("name")[0].style.color = "red";
+      document.getElementsByName("surname")[0].style.color = "red";
       document.getElementsByName("password")[0].style.color = "red";
       setInterval(backNormal, 1000);
       function backNormal(){
         if(document.getElementsByName("name").length > 0){
           document.getElementsByName("name")[0].style.color = "black";
+          document.getElementsByName("surname")[0].style.color = "black";
           document.getElementsByName("password")[0].style.color = "black";
         }
       }
-      
       return
     }
     alert("Merci de remplir les deux champs");
@@ -45,10 +46,10 @@ function CreerLogSignPage() {
   
   const handleSignIn = async (e) => {
     e.preventDefault();
-    if (signData.name !== '' && signData.password !== '' && signData.email !== ''){
+    if (signData.name !== '' && signData.surname !== '' && signData.password !== '' && signData.email !== ''){
       const requeteData = {
         nom: signData.name,
-        prenom: signData.name,
+        prenom: signData.surname,
         mail: signData.email,
         mot_de_passe: signData.password,
       };
@@ -90,6 +91,10 @@ function CreerLogSignPage() {
                 <input type="text" name="name" value={logData.name} onChange={handleChange} />
               </div>
               <div>
+                <label>Prenom:</label>
+                <input type="text" name="surname" value={logData.surname} onChange={handleChange} />
+              </div>
+              <div>
                 <label>Mot de passe:</label>
                 <input type="password" name="password" value={logData.password} onChange={handleChange} />
               </div>
@@ -109,6 +114,10 @@ function CreerLogSignPage() {
               <div>
                 <label>Nom:</label>
                 <input type="text" name="name" value={signData.name} onChange={handleChange} />
+              </div>
+              <div>
+                <label>Prenom:</label>
+                <input type="text" name="surname" value={signData.surname} onChange={handleChange} />
               </div>
               <div>
                 <label>Mot de passe:</label>
