@@ -178,7 +178,7 @@ exports.updatePhoto = (req, res) => {
 exports.getMissionsActivesEnAttente = (req, res) => {
     const id = req.params.id
     const query = `
-        SELECT ma.id_mission_active, ma.id_joueur, ma.id_mission, ma.date_debut, ma.date_fin, ma.id_status, ma.photo_url, m.description_mission AS description_mission, m.nom_mission AS nom_mission
+        SELECT ma.id_mission_active, ma.id_joueur, ma.id_mission, ma.date_debut, ma.date_fin, ma.id_status, ma.photo_url, m.description_mission AS description_mission, m.nom_mission AS nom_mission, m.points AS points
         FROM MissionsActives ma
         JOIN Missions m ON ma.id_mission = m.id_mission
         WHERE ma.id_status = 2

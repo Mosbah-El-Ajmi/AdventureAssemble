@@ -29,7 +29,7 @@ const ValidationMissions = () => {
         setSelectedMission(selectedMission === missionId ? null : missionId);
     };
 
-    const reussiMissionStatus = (missionId) => {
+    const reussiMissionStatus = (missionId, points, joueurId) => {
         const statusId = 3;
         const token = localStorage.getItem("auth_token");
         axios
@@ -48,6 +48,16 @@ const ValidationMissions = () => {
             })
             .catch((error) => {
                 console.error("Error updating mission status:", error);
+            });
+
+        axios
+            .put(`http://localhost:3001/joueurs/score/${points}/${joueurId}/${token}`)
+            .then((response) => {
+                console.log("Les points ont été rajouté au joueur:", response);
+            })
+
+            .catch((error) => {
+                console.error("il y a eu une erreur lors de l'ajout des points au joueur:", error);
             });
     };
 
@@ -105,7 +115,7 @@ const ValidationMissions = () => {
                                         className="reussie"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            reussiMissionStatus(missionActive.id_mission_active);
+                                            reussiMissionStatus(missionActive.id_mission_active, missionActive.points, missionActive.id_joueur);
                                         }}
                                     >
                                         Réussie
@@ -114,7 +124,7 @@ const ValidationMissions = () => {
                                         className="ratee"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            reussiMissionStatus(missionActive.id_mission_active);
+                                            rateeMissionStatus(missionActive.id_mission_active);
                                         }}
                                     >
                                         Ratée
