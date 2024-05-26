@@ -82,3 +82,25 @@ exports.getJoueursByIdPartie = (req, res) => {
         res.status(500).json({ error: 'Mauvais token'});
     }
 };
+
+exports.updatePoints = (req, res) => {
+    const points = req.params.points;
+    const idJoueur = req.params.id;
+
+
+    const sql = "UPDATE Joueurs SET nombre_points = nombre_points + (?) WHERE id_joueur = (?)";
+    const tok = req.params.tok;
+    if(auth(tok)){
+        connection.query(sql, [points, idJoueur], (err, result) => {
+            if (err) {
+                console.error('Erreur lors de la mise à jour des points du joueur :', err);
+                res.status(500).json({ error: 'Erreur lors de la mise à jour des points du joueur' });
+            } else {
+                res.json(result);
+            }
+        });
+    }
+    else{
+        res.status(500).json({ error: 'Mauvais token'});
+    }
+};
