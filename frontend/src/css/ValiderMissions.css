@@ -12,8 +12,8 @@
 
 .missions-list {
     width: 100%;
-    display: flex; /* Utiliser la mise en page en flexbox */
-    flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne si nécessaire */
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .mission {
@@ -28,16 +28,26 @@
 
 .reussie {
     background-color: darkgreen;
-    width: 25%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 35%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: clamp(0.6rem, 2vw, 1.2rem);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ratee {
     background-color: darkred;
-    width: 25%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 35%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: clamp(0.6rem, 2vw, 1.2rem);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .reussie:hover {
@@ -73,34 +83,30 @@
 }
 
 .expanded-1 {
-    /* Styles supplémentaires pour les missions étendues */
     background-color: #f9f9f9;
     border: 1px solid #999;
     padding: 4%;
 }
 
 .expanded-2 {
-    /* Styles supplémentaires pour les missions étendues */
     background-color: orange;
     border: 1px solid #999;
     padding: 4%;
 }
 
 .expanded-3 {
-    /* Styles supplémentaires pour les missions étendues */
     background-color: green;
     border: 1px solid #999;
     padding: 4%;
 }
 
 .expanded-4 {
-    /* Styles supplémentaires pour les missions étendues */
     background-color: darkred;
     border: 1px solid #999;
     padding: 4%;
 }
 
 .cloudinary-image {
-    max-width: 100%; /* Largeur maximale de 100% */
-    height: auto; /* Hauteur automatique pour maintenir le rapport hauteur/largeur */
+    max-width: 100%;
+    height: auto;
 }
