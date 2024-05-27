@@ -4,17 +4,25 @@
   margin: 20px auto;
   box-sizing: border-box;
   width: 100%;
-  max-width: 1000px; /* Added for responsiveness */
+  max-width: 1000px;
+  display: flexbox;
+  box-shadow: 0px 4px 10px rgba(255, 145, 0, 0.2);
 }
 
 .historique-container h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px;
+  padding: 20px;
+  font-family: "Michroma", sans-serif;
 }
 
 .history-table {
   width: 100%;
+  padding: 20px;
   border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .history-table th,
@@ -27,17 +35,18 @@
 .history-table th {
   background-color: blueviolet;
   color: white;
+  font-family: "Michroma", sans-serif;
 }
 
 .history-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: rgb(255, 158, 2);
 }
 
 .history-table tbody tr:hover {
-  background-color: #ddd;
+  background-color: goldenrod;
+  transition: background-color 0.3s ease;
 }
 
-/* Responsive adjustments */
 @media only screen and (max-width: 768px) {
   .historique-container {
     padding: 10px;
@@ -46,7 +55,7 @@
   .history-table th,
   .history-table td {
     padding: 5px;
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 14px;
   }
 }
 
@@ -54,6 +63,6 @@
   .history-table th,
   .history-table td {
     padding: 2px;
-    font-size: 12px; /* Further adjust font size for smaller screens */
+    font-size: 12px;
   }
 }

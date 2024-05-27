@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { useTable, useSortBy } from "react-table";
+import { motion } from "framer-motion";
 import "../css/Historique.css";
 
 const Historique = () => {
@@ -58,16 +59,31 @@ const Historique = () => {
     useTable({ columns, data }, useSortBy);
 
   return (
-    <div className="historique-container">
+    <motion.div className="historique-container">
       <h1>Historique du Joueur</h1>
-      <table {...getTableProps()} className="history-table">
+      <motion.table
+        {...getTableProps()}
+        className="history-table"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+            <motion.tr
+              {...headerGroup.getHeaderGroupProps()}
+              key={headerGroup.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
               {headerGroup.headers.map((column) => (
-                <th
+                <motion.th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
                   key={column.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   {column.render("Header")}
                   <span>
@@ -77,27 +93,39 @@ const Historique = () => {
                         : " 🔼"
                       : ""}
                   </span>
-                </th>
+                </motion.th>
               ))}
-            </tr>
+            </motion.tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody>
           {rows.map((row) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()} key={row.id}>
+              <motion.tr
+                {...row.getRowProps()}
+                key={row.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+              >
                 {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()} key={cell.id}>
+                  <motion.td
+                    {...cell.getCellProps()}
+                    key={cell.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.2 }}
+                  >
                     {cell.render("Cell")}
-                  </td>
+                  </motion.td>
                 ))}
-              </tr>
+              </motion.tr>
             );
           })}
         </tbody>
-      </table>
-    </div>
+      </motion.table>
+    </motion.div>
   );
 };
 

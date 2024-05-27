@@ -7,7 +7,7 @@
   color: white;
   cursor: pointer;
   padding: 1rem;
-  box-sizing: border-box; /* Added to ensure padding is included in width */
+  box-sizing: border-box;
 }
 
 .CompactCard:hover {
@@ -107,12 +107,23 @@
   .ExpandedCard {
     width: 70%;
     left: 20%;
-    bottom: 20%;
     top: 20%;
     right: 20%;
   }
 
   .chartContainer {
     width: 65%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .CompactCard {
+    width: calc(100% - 2rem);
+  }
+
+  .CompactCard span {
+    font-size: 0.8rem;
+  }
+  .radialBar {
+    font-size: 0.8rem;
   }
 }

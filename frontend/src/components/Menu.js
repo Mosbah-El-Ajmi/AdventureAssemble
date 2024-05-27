@@ -1,11 +1,10 @@
 import React from "react";
 import "../css/Menu.css";
 import { Link, useLocation } from "react-router-dom";
-import { FaListCheck } from "react-icons/fa6";
-import { GrValidate } from "react-icons/gr";
 import {
   GiTimeBomb,
   GiAbstract038,
+  GiGoldBar,
   GiHistogram,
 } from "react-icons/gi";
 
@@ -20,7 +19,7 @@ function Menu() {
   if (!joueurId) {
     return null;
   }
-    
+
   return (
     <menu>
       <ul id="mainMenu">
@@ -42,11 +41,15 @@ function Menu() {
             <span className="linkName">Historique</span>
           </Link>
         </li>
-        
+        <li className={activeItem === "/rewards" ? "active" : ""}>
+          <Link to="/rewards">
+            <GiGoldBar />
+            <span className="linkName">Récompense</span>
+          </Link>
+        </li>
       </ul>
     </menu>
   );
 }
 
 export default Menu;
-

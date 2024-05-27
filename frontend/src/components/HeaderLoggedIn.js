@@ -1,36 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../images/Gather.png";
 import accountIcon from "../images/account.png";
 import "../css/Header.css";
 
 function HeaderLoggedIn() {
+  const [activeLink, setActiveLink] = useState("");
+  const [menuVisible, setMenuVisible] = useState(false);
+  const menuContainerRef = useRef(null);
+
   useEffect(() => {
-    const account = document.getElementById("account-icon");
-    const menuContainer = document.getElementById("menuContainerConnected");
-
-    if (account && menuContainer) {
-      account.addEventListener("mouseenter", handleMouseEnter);
-      menuContainer.addEventListener("mouseleave", handleMouseLeave);
-
-      // Nettoyage des écouteurs d'événements lorsque le composant est démonté
-      return () => {
-        account.removeEventListener("mouseenter", handleMouseEnter);
-        menuContainer.removeEventListener("mouseleave", handleMouseLeave);
-      };
+    const storedActiveLink = localStorage.getItem("activeLink");
+    if (storedActiveLink) {
+      setActiveLink(storedActiveLink);
     }
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
   }, []);
 
-  const handleMouseEnter = () => {
-    const menuContainer = document.getElementById("menuContainerConnected");
-    if (menuContainer) {
-      menuContainer.style.transform = "translatex(0px)";
-    }
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+    localStorage.setItem("activeLink", link);
   };
 
-  const handleMouseLeave = () => {
-    const menuContainer = document.getElementById("menuContainerConnected");
-    if (menuContainer) {
-      menuContainer.style.transform = "translatex(300px)";
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible); // Toggle menu visibility
+  };
+
+  const handleOutsideClick = (event) => {
+    if (
+      menuContainerRef.current &&
+      !menuContainerRef.current.contains(event.target)
+    ) {
+      setMenuVisible(false); // Hide menu if clicked outside of it
     }
   };
 
@@ -42,25 +46,59 @@ function HeaderLoggedIn() {
         </div>
         <ul>
           <li>
-            <a href="liste-missions">Suivi des missions</a>
+            <a
+              href="liste-missions"
+              className={activeLink === "liste-missions" ? "active" : ""}
+              onClick={() => handleLinkClick("liste-missions")}
+            >
+              Suivi des missions
+            </a>
           </li>
           <li>
-            <a href="validation">Valider missions</a>
+            <a
+              href="validation"
+              className={activeLink === "validation" ? "active" : ""}
+              onClick={() => handleLinkClick("validation")}
+            >
+              Valider missions
+            </a>
           </li>
           <li>
-            <a href="dashboard">Dashboard</a>
+            <a
+              href="dashboard"
+              className={activeLink === "dashboard" ? "active" : ""}
+              onClick={() => handleLinkClick("dashboard")}
+            >
+              Dashboard
+            </a>
           </li>
           <li>
-            <a href="creer-mission">Créer Mission</a>
+            <a
+              href="creer-mission"
+              className={activeLink === "creer-mission" ? "active" : ""}
+              onClick={() => handleLinkClick("creer-mission")}
+            >
+              Créer Mission
+            </a>
           </li>
           <li>
-            <a href="choix-joueur">Choisir Joueur</a>
+            <a
+              href="choix-joueur"
+              className={activeLink === "choix-joueur" ? "active" : ""}
+            >
+              Choisir Joueur
+            </a>
           </li>
         </ul>
-        <div className="account-icon" id="account-icon">
-          <img src={accountIcon} alt="Account" />{" "}
+        <div className="account-icon" onClick={toggleMenu} id="account-icon">
+          {" "}
+          {/* Attach onClick event */}
+          <img src={accountIcon} alt="Account" />
         </div>
-        <div className="menuContainer connected" id="menuContainerConnected">
+        <div
+          className={`menuContainer connected ${menuVisible ? "visible" : ""}`}
+          ref={menuContainerRef}
+        >
           <ul>
             <li>Compte</li>
             <li>Parametres</li>

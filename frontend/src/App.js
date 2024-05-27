@@ -12,6 +12,7 @@ import AuthProvider from "./components/auth.js";
 import ValiderMissions from "./components/ValiderMissions";
 import ChoixJoueur from "./components/choixJoueur.js";
 import History from "./components/History.js";
+import Rewards from "./components/Rewards.js";
 
 function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
     "/classement",
     "/history",
     "/validation",
+    "/rewards",
   ];
   const shouldShowLoggedInHeader = headerRoutes.some((route) =>
     location.pathname.startsWith(route)
@@ -41,6 +43,7 @@ function App() {
           <Route path="/classement/*" element={<Classement />} />
           <Route path="/history/*" element={<History />} />
           <Route path="/choix-joueur/*" element={<ChoixJoueur />} />
+          <Route path="/rewards/*" element={<Rewards />} />
         </Routes>
       </AuthProvider>
     </div>

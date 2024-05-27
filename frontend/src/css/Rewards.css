@@ -1,0 +1,204 @@
+@font-face {
+  font-family: "Michroma";
+  src: url("../fonts/Michroma-Regular.ttf") format("truetype");
+}
+
+body {
+  font-family: "Michroma", sans-serif;
+}
+
+.reward-container {
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+}
+
+.reward-title {
+  font-size: 2em;
+}
+
+.reward-total-points {
+  font-size: 1em;
+  border-radius: 5px;
+}
+
+.achievement-title {
+  font-size: 1em;
+  margin: 20px;
+  padding: 20px;
+  background-color: rgb(255, 158, 2);
+  font-weight: bold;
+  border-radius: 0.5rem;
+}
+
+.achievement-icons {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 4rem;
+  background-color: black;
+  border-radius: 0.5rem;
+}
+
+.reward-list {
+  list-style-type: none;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reward-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width: calc(33.33% - 20px);
+}
+
+.achievement-bronze {
+  color: #cd7f32;
+}
+
+.achievement-silver {
+  color: #c0c0c0;
+}
+
+.achievement-gold {
+  color: #ffd700;
+}
+
+.achievement-platinum {
+  color: #8a2be2;
+}
+
+.achievement-diamond {
+  color: #b9f2ff;
+}
+
+.achievement-legendary {
+  color: #e25041;
+}
+
+.reward-item.reward-bronze {
+  background-color: #cd7f32;
+}
+
+.reward-item.reward-silver {
+  background-color: #c0c0c0;
+}
+
+.reward-item.reward-gold {
+  background-color: #ffd700;
+}
+
+.reward-item.reward-platinum {
+  background-color: #8a2be2;
+}
+
+.reward-item.reward-diamond {
+  background-color: #b9f2ff;
+}
+
+.reward-item.reward-legendary {
+  background-color: #e25041;
+}
+
+.reward-text {
+  font-size: 1.5em;
+}
+
+.reward-icon {
+  font-size: 1.9em;
+  color: inherit;
+}
+
+.reward-button {
+  margin-left: 20px;
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 30%;
+  font-family: "Michroma", sans-serif;
+}
+
+.reward-button:hover {
+  background-color: goldenrod;
+}
+
+.next-reward {
+  color: gray;
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Michroma", sans-serif;
+}
+
+.reset-button:hover {
+  background-color: darkred;
+}
+
+.reward-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reward-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.reward-modal h2 {
+  margin-bottom: 20px;
+  font-family: "Michroma", sans-serif;
+}
+
+.reward-modal button {
+  padding: 10px 20px;
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Michroma", sans-serif;
+}
+
+.reward-modal button:hover {
+  background-color: black;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .reward-item {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .reward-item {
+    width: calc(100% - 20px);
+  }
+}
