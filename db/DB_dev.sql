@@ -42,7 +42,7 @@ CREATE TABLE `Joueurs` (
 
 LOCK TABLES `Joueurs` WRITE;
 /*!40000 ALTER TABLE `Joueurs` DISABLE KEYS */;
-INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',550),(2,3,3,'DoReMi',0);
+INSERT INTO `Joueurs` VALUES (1,1,1,'test_pseudo',550),(2,2,3,'DoReMi',150),(3,3,3,'Martin',120),(4,4,3,'Bob',170);
 /*!40000 ALTER TABLE `Joueurs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ CREATE TABLE `Missions` (
 
 LOCK TABLES `Missions` WRITE;
 /*!40000 ALTER TABLE `Missions` DISABLE KEYS */;
-INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'escalade','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'Escalade','Grimpez jusqu\'en haut de la falaise et prenez une photo spectaculaire du sommet pour prouver votre exploit.',1,NULL,NULL,NULL,NULL,350,NULL),(9,'Chasse au chat','Trouvez un chat dans le voisinage et prenez une photo avec lui.',1,NULL,NULL,NULL,NULL,150,NULL),(10,'Nettoyage Express','Nettoyez la salle à manger de la soiré d\'hier il ne dois plus rien resté. Prend une photo pour prouver le résultat',1,NULL,NULL,NULL,NULL,400,NULL),(11,'Orientation','Trouve l\'eglise du village sans aide et prend la en photo.',1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `Missions` VALUES (1,'course','description course',1,NULL,NULL,NULL,NULL,250,NULL),(2,'Escalade 2','description escalade',1,NULL,NULL,NULL,NULL,150,NULL),(3,'orientation','description orientation',1,NULL,NULL,NULL,NULL,300,NULL),(4,'testnom','test description',1,NULL,1,1,1,900,NULL),(5,'testnom','test description',1,NULL,1,1,1,90,NULL),(6,'testnom','test description',1,NULL,1,1,1,90,NULL),(7,'testnom','test description',1,NULL,1,1,1,90,NULL),(8,'Escalade','Grimpez jusqu\'en haut de la falaise et prenez une photo spectaculaire du sommet pour prouver votre exploit.',1,NULL,NULL,NULL,NULL,350,NULL),(9,'Chasse au chat','Trouvez un chat dans le voisinage et prenez une photo avec lui.',1,NULL,NULL,NULL,NULL,150,NULL),(10,'Nettoyage Express','Nettoyez la salle à manger de la soiré d\'hier il ne dois plus rien resté. Prend une photo pour prouver le résultat',1,NULL,NULL,NULL,NULL,400,NULL),(11,'Orientation','Trouve l\'eglise du village sans aide et prend la en photo.',1,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Missions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `MissionsActives` (
 
 LOCK TABLES `MissionsActives` WRITE;
 /*!40000 ALTER TABLE `MissionsActives` DISABLE KEYS */;
-INSERT INTO `MissionsActives` VALUES (1,1,1,NULL,NULL,3,NULL),(2,1,3,NULL,NULL,2,'https://res.cloudinary.com/dyowth3mr/image/upload/v1716630931/GETG/sac2nsqgjds0wd8pjjp0.jpg'),(3,1,2,NULL,NULL,1,NULL),(4,2,8,NULL,NULL,2,'https://res.cloudinary.com/dyowth3mr/image/upload/v1716766722/GETG/af2s7mqlykh0zmdl28sv.jpg'),(5,2,9,NULL,NULL,1,NULL),(6,2,10,NULL,NULL,1,NULL),(7,2,11,NULL,NULL,1,NULL);
+INSERT INTO `MissionsActives` VALUES (1,3,1,NULL,NULL,3,NULL),(2,1,3,NULL,'2024-05-28',2,'https://res.cloudinary.com/dyowth3mr/image/upload/v1716630931/GETG/sac2nsqgjds0wd8pjjp0.jpg'),(3,2,2,NULL,'2024-05-28',1,NULL),(4,2,8,NULL,'2024-05-15',2,'https://res.cloudinary.com/dyowth3mr/image/upload/v1716766722/GETG/af2s7mqlykh0zmdl28sv.jpg'),(5,4,9,NULL,'2024-05-28',1,NULL),(6,2,10,NULL,'2024-05-23',1,NULL),(7,2,11,NULL,'2024-05-21',1,NULL);
 /*!40000 ALTER TABLE `MissionsActives` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +225,7 @@ CREATE TABLE `Utilisateur` (
 
 LOCK TABLES `Utilisateur` WRITE;
 /*!40000 ALTER TABLE `Utilisateur` DISABLE KEYS */;
-INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test'),(2,'Fasol','Rémi','remi.fasol@exemple.com','lassi'),(3,'Fasol','Fasol','remi.fasol@exemple.com','2b797bd4a4d222d67a6be120805c6e070f7630ab1029cded30f6272f715773cca5601377bbba3c2e45af4a76b85e662c48d4274b2d3f7a12f5259d0b65f7c11d');
+INSERT INTO `Utilisateur` VALUES (1,'Doe','John','john.doe@example.com','test'),(2,'Fasol','Rémi','remi.fasol@exemple.com','2b797bd4a4d222d67a6be120805c6e070f7630ab1029cded30f6272f715773cca5601377bbba3c2e45af4a76b85e662c48d4274b2d3f7a12f5259d0b65f7c11d'),(3,'Martin','Martin','martin.martin@exemple.com','858d0c8322fd1ac09aa069803221da244c35b5709928b1916a58af05dce0cf6e5965fa3db899ca36d675fa06d3eac8cc30bbfa01d8fa425517e1ad2ccdcc5a66'),(4,'Bob','JustBob','Bob@exemple.com','f11f0cdc02bec322c4ee7a76dd60c9db3df05a01864c825bf601dcbcbe5cf27b919f853a76dd4a0cb15848ad9a9aabbae560c2b8db83434ad16650684c638b49');
 /*!40000 ALTER TABLE `Utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
