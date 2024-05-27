@@ -8,7 +8,7 @@ const connection = require("../DbConnection");
 exports.getAllPlayerHistory = (req, res) => {
   const tok = req.params.tok;
   if (auth(tok)) {
-    const query = "SELECT * FROM PlayerHistory";
+    const query = "SELECT * FROM playerhistory";
     connection.query(query, (error, results) => {
       if (error) {
         console.error("Error fetching player history:", error);
@@ -32,7 +32,7 @@ exports.postPlayerHistory = (req, res) => {
   }
   if (auth(tok)) {
     const sql =
-      "INSERT INTO PlayerHistory (id_joueur, id_partie, points) VALUES (?, ?, ?)";
+      "INSERT INTO playerhistory (id_joueur, id_partie, points) VALUES (?, ?, ?)";
     connection.query(sql, [id_joueur, id_partie, points], (error, result) => {
       if (error) {
         console.error("Error adding player history:", error);
