@@ -36,10 +36,6 @@ input {
   margin-top: 20px;
 }
 
-.App::-webkit-scrollbar {
-  display: none;
-}
-
 @media only screen and (max-width: 525px) {
   .App {
     overflow-x: hidden;
