@@ -2,7 +2,7 @@ import "../css/Table.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-let idPartie = 1; // à faire
+const idPartie = localStorage.getItem('partie_id');
 const Table = () => {
   const [joueursLoaded, setJoueursLoaded] = useState(false);
   const [joueursBase, setJoueursBase] = useState([]);

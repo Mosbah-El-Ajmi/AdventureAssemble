@@ -18,9 +18,10 @@ function ChoixJoueur() {
       });
   }, []);
   
-  function setJoueur(id, pseudo){
+  function setJoueur(id, pseudo, partie){
     localStorage.setItem("joueur_id", id);
     localStorage.setItem("pseudo", pseudo);
+    localStorage.setItem("partie_id", partie);
     navigate("/dashboard");
   };
 
@@ -32,7 +33,7 @@ function ChoixJoueur() {
       <ul>
       {
        joueurs.map((val, key) => { 
-         return (<li key={val.id_joueur} onClick={() => setJoueur(val.id_joueur, val.pseudo)}>{val.pseudo}</li>)
+         return (<li key={val.id_joueur} onClick={() => setJoueur(val.id_joueur, val.pseudo, val.id_partie)}>{val.pseudo}</li>)
        })}
       </ul>
 	</div>

@@ -60,7 +60,7 @@ exports.getToken = (req, res) => {
     const name = req.params.name;
     const surname = req.params.surname;
     const password = req.params.password;
-    const query = 'SELECT id_compte, nom FROM Utilisateur WHERE (nom, prenom, mot_de_passe) = (?,?,?)';
+    const query = 'SELECT id_compte, nom, prenom FROM Utilisateur WHERE (nom, prenom, mot_de_passe) = (?,?,?)';
     hash(password).then(hashed =>
         connection.query(query, [name, surname, hashed], (err, result) => {
             result=JSON.parse(JSON.stringify(result))

@@ -9,7 +9,6 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const loginAction = async (data) => {
     try {
-      console.log(data);
       const response = await fetch("http://localhost:3001/utilisateurs/auth/"+data.name+"/"+data.surname+"/"+data.password);
       const res = await response.json();
       if (res.token) {
