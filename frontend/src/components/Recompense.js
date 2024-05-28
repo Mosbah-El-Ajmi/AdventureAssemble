@@ -46,25 +46,25 @@ const Recompense = () => {
   const calculateRewards = (points) => {
     const availableRewards = [
       {
-        pointsThreshold: 100,
+        pointsThreshold: 1000,
         reward: "Bronze Star",
         icon: <GiBarbedStar />,
         color: "bronze",
       },
       {
-        pointsThreshold: 200,
+        pointsThreshold: 2000,
         reward: "Silver Star",
         icon: <GiBeveledStar />,
         color: "silver",
       },
       {
-        pointsThreshold: 300,
+        pointsThreshold: 3000,
         reward: "Gold Star",
         icon: <GiCursedStar />,
         color: "gold",
       },
       {
-        pointsThreshold: 400,
+        pointsThreshold: 4000,
         reward: "Platinum Star",
         icon: <GiJusticeStar />,
         color: "platinum",
