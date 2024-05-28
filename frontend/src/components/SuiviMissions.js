@@ -7,6 +7,7 @@ const ListeMissions = () => {
   const [selectedMission, setSelectedMission] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
+  //récup les missions du joueur connecté
   useEffect(() => {
     const joueurId = localStorage.getItem('joueur_id');
     axios
@@ -15,6 +16,7 @@ const ListeMissions = () => {
           "/" +
           localStorage.getItem("auth_token")
       )
+        //trie les missions en fonction de leur status
       .then((response) => {
         response.data.sort(
           (a, b) => a.id_status - b.id_status
@@ -30,6 +32,7 @@ const ListeMissions = () => {
     setSelectedMission(selectedMission === missionId ? null : missionId);
   };
 
+  //change le status de la mission en "en attente" pour qu'ensuite un autre joueur puisse la valider.
   const validateMissionStatus = (missionId) => {
     axios
       .put(
@@ -54,6 +57,7 @@ const ListeMissions = () => {
       });
   };
 
+  //change le status de la mission en "abandonné"
   const leaveMissionStatus = (missionId) => {
     axios
       .put(
@@ -78,6 +82,7 @@ const ListeMissions = () => {
       });
   };
 
+  //recupère le photo, la publie sur cloudinary et récupère l'url de la photo pour la mettre dans la db avec la mission active lié
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
