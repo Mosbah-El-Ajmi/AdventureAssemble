@@ -35,23 +35,17 @@ exports.postMissions = (req, res) => {
     const partie = req.body.partie_id;
     const point = req.body.points;
     const diff = req.body.difficulte;
-    const tok = req.params.tok;
 
 
     const sql = "INSERT INTO Missions (nom_mission, description_mission, date_creation, public, auteur_id, destinataire_id, partie_id, points, difficulte) VALUES (?,?,?,?,?,?,?,?,?)";
-    if(auth(tok)){
-        connection.query(sql, [nom, description, datecrea, publique, auteur, destinataire, partie, point, diff], (err, result) => {
-            if (err) {
-                console.error('Erreur lors de l\'insertion de la mission :', err);
-                res.status(500).json({ error: 'Erreur lors de l\'insertion de la mission' });
-            } else {
-                res.json(result);
-            }
-        });
-    }
-    else{
-        res.status(500).json({ error: 'Mauvais token'});
-    }
+    connection.query(sql, [nom, description, datecrea, publique, auteur, destinataire, partie, point, diff], (err, result) => {
+        if (err) {
+            console.error('Erreur lors de l\'insertion de la mission :', err);
+            res.status(500).json({ error: 'Erreur lors de l\'insertion de la mission' });
+        } else {
+            res.json(result);
+        }
+    });
 };
 
 
