@@ -2,6 +2,12 @@
 
 GatherGame est un jeu conçu pour être joué entre amis, où vous pouvez proposer vos idées les plus amusantes, défier vos amis et gravir les échelons pour devenir le champion de votre équipe. Que vous soyez partant pour explorer, créer ou simplement vous amuser, GatherGame promet des moments inoubliables et des défis à relever ensemble.
 
+## Le site web déployé
+Voici l'URL pour pouvoir accéder au site web GatherGame
+* https://gathergame.ddns.net
+
+Les identifiants pour se connecter à l'utilisateur exemple ont été envoyés sur Teams.
+
 ## Comment lancer le projet
 
 ### Prérequis
