@@ -87,7 +87,7 @@ const ValidationMissions = () => {
     return (
         <div className="app">
             <div>
-                <h1 className="titre">Missions à valider</h1>
+                <h1 className="titre">Missions des joueurs à valider</h1>
             </div>
             <div className="missions-list">
                 {missionsActive.map((missionActive) => (
