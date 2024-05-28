@@ -12,10 +12,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "apexcharts": "^3.48.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "cloudinary": "^2.2.0",
     "express": "^4.19.2",
     "framer-motion": "^11.0.28",
+    "jest-fetch-mock": "^3.0.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "multer": "^1.4.5-lts.1",
@@ -33,6 +34,7 @@
     "reward": "^1.0.0",
     "sort-by": "^1.2.0",
     "use-local-storage": "^3.0.0",
+    "use-resize-observer": "^9.1.0",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.22"
   },
@@ -61,6 +63,21 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/core": "^7.24.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
+    "axios-mock-adapter": "^1.22.0",
+    "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "jest-transform-stub": "^2.0.0",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   }
 }
