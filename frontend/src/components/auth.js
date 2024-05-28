@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const loginAction = async (data) => {
     try {
-      const response = await fetch("http://localhost:3001/utilisateurs/auth/"+data.name+"/"+data.surname+"/"+data.password);
+      const response = await fetch("https://backendgg.ddns.net/utilisateurs/auth/"+data.name+"/"+data.surname+"/"+data.password);
       const res = await response.json();
       if (res.token) {
         setUser(data.name);
@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("prenom", res.prenom);
         localStorage.setItem("util_id", res.id);
         try {
-          const response2 = await fetch("http://localhost:3001/joueurs/utilisateur/"+localStorage.getItem('util_id')+'/'+localStorage.getItem('auth_token'));
+          const response2 = await fetch("https://backendgg.ddns.net/joueurs/utilisateur/"+localStorage.getItem('util_id')+'/'+localStorage.getItem('auth_token'));
           const res2 = await response2.json();
           if (res2[0].pseudo) {
             localStorage.setItem("pseudo", res2[0].pseudo);

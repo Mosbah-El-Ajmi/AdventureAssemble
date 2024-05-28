@@ -9,7 +9,7 @@ function ChoixJoueur() {
   const [joueurs, setJoueurs] = useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost:3001/joueurs/utilisateur/' + localStorage.getItem('util_id') + '/' + localStorage.getItem('auth_token'))
+    axios.get('https://backendgg.ddns.net/joueurs/utilisateur/' + localStorage.getItem('util_id') + '/' + localStorage.getItem('auth_token'))
       .then(response => {
         setJoueurs(response.data);
       })

@@ -33,7 +33,7 @@ function CreerMissionPage() {
 
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/missions/', {
+      const response = await fetch('https://backendgg.ddns.net/missions/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

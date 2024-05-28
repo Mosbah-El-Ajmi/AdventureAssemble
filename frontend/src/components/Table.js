@@ -11,7 +11,7 @@ const Table = () => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:3001/joueurs/Partie/" +
+        "https://backendgg.ddns.net/joueurs/Partie/" +
           idPartie +
           "/" +
           localStorage.getItem("auth_token")
@@ -32,7 +32,7 @@ const Table = () => {
       for (let joueur of joueursBase) {
         axios
           .get(
-            "http://localhost:3001/missions_active/joueurNoms/" +
+            "https://backendgg.ddns.net/missions_active/joueurNoms/" +
               joueur.id_joueur +
               "/" +
               localStorage.getItem("auth_token")
@@ -56,7 +56,7 @@ const Table = () => {
           });
         axios
           .get(
-            "http://localhost:3001/missions_active/24h/" +
+            "https://backendgg.ddns.net/missions_active/24h/" +
               joueur.id_joueur +
               "/" +
               localStorage.getItem("auth_token")

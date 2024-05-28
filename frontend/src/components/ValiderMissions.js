@@ -10,7 +10,7 @@ const ValidationMissions = () => {
         const joueurId = localStorage.getItem('joueur_id');
         axios
             .get(
-                `http://localhost:3001/missions_active/EnAttente/${joueurId}` +
+                `https://backendgg.ddns.net/missions_active/EnAttente/${joueurId}` +
                 "/" +
                 localStorage.getItem("auth_token")
             )
@@ -33,7 +33,7 @@ const ValidationMissions = () => {
         const statusId = 3;
         const token = localStorage.getItem("auth_token");
         axios
-            .put(`http://localhost:3001/missions_active/status/${missionId}/${statusId}/${token}`)
+            .put(`https://backendgg.ddns.net/missions_active/status/${missionId}/${statusId}/${token}`)
             .then((response) => {
                 console.log("Le status de la mission a bien été changé:", response);
                 // Met à jour de l'état local de la mission
@@ -51,7 +51,7 @@ const ValidationMissions = () => {
             });
 
         axios
-            .put(`http://localhost:3001/joueurs/score/${points}/${joueurId}/${token}`)
+            .put(`https://backendgg.ddns.net/joueurs/score/${points}/${joueurId}/${token}`)
             .then((response) => {
                 console.log("Les points ont été rajouté au joueur:", response);
             })
@@ -65,7 +65,7 @@ const ValidationMissions = () => {
         const statusId = 1;
         const token = localStorage.getItem("auth_token");
         axios
-            .put(`http://localhost:3001/missions_active/status/${missionId}/${statusId}/${token}`)
+            .put(`https://backendgg.ddns.net/missions_active/status/${missionId}/${statusId}/${token}`)
             .then((response) => {
                 console.log("Le status de la mission a bien été changé:", response);
                 // Met à jour de l'état local de la mission

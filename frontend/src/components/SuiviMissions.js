@@ -12,7 +12,7 @@ const ListeMissions = () => {
     const joueurId = localStorage.getItem('joueur_id');
     axios
       .get(
-        `http://localhost:3001/missions_active/joueur/${joueurId}` +
+        `https://backendgg.ddns.net/missions_active/joueur/${joueurId}` +
           "/" +
           localStorage.getItem("auth_token")
       )
@@ -36,7 +36,7 @@ const ListeMissions = () => {
   const validateMissionStatus = (missionId) => {
     axios
       .put(
-        `http://localhost:3001/missions_active/validation/${missionId}` +
+        `https://backendgg.ddns.net/missions_active/validation/${missionId}` +
           "/" +
           localStorage.getItem("auth_token")
       )
@@ -61,7 +61,7 @@ const ListeMissions = () => {
   const leaveMissionStatus = (missionId) => {
     axios
       .put(
-        `http://localhost:3001/missions_active/abandon/${missionId}` +
+        `https://backendgg.ddns.net/missions_active/abandon/${missionId}` +
           "/" +
           localStorage.getItem("auth_token")
       )
@@ -92,7 +92,7 @@ const ListeMissions = () => {
       formData.append("photo", file);
 
       const response = await axios.post(
-        "http://localhost:3001/upload",
+        "https://backendgg.ddns.net/upload",
         formData,
         {
           headers: {
@@ -106,7 +106,7 @@ const ListeMissions = () => {
 
       axios
         .put(
-          `http://localhost:3001/missions_active/photo/${missionId}` +
+          `https://backendgg.ddns.net/missions_active/photo/${missionId}` +
             "/" +
             localStorage.getItem("auth_token"),
           { url: imageUrl }

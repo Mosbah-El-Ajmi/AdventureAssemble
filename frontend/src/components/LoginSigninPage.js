@@ -54,7 +54,7 @@ function CreerLogSignPage() {
         mot_de_passe: signData.password,
       };
       try {
-        const response = await fetch('http://localhost:3001/utilisateurs/', {
+        const response = await fetch('https://backendgg.ddns.net/utilisateurs/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

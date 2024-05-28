@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://gathergame.ddns.net",
     optionsSuccessStatus: 200, // Some legacy browsers choke on 204
   })
 );
@@ -54,9 +54,9 @@ app.post("/upload", upload.single("photo"), async (req, res) => {
 
 //donnée connecxion db
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Ephec123@",
+  host: "gather.cxoqmmm20d2x.eu-north-1.rds.amazonaws.com",
+  user: "admin",
+  password: "Ephec123",
   database: "dev",
 });
 

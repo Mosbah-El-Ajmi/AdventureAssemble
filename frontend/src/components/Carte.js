@@ -18,7 +18,7 @@ const Carte = ({ graphiquesData }) => {
       // Fetch player name based on selected player ID
       axios
         .get(
-          `http://localhost:3001/joueurs/id/${selectedPlayerId}/${localStorage.getItem(
+          `https://backendgg.ddns.net/joueurs/id/${selectedPlayerId}/${localStorage.getItem(
             "auth_token"
           )}`
         )
@@ -34,7 +34,7 @@ const Carte = ({ graphiquesData }) => {
       // Fetch player history based on selected player ID
       axios
         .get(
-          `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
+          `https://backendgg.ddns.net/history/${localStorage.getItem("auth_token")}`
         )
         .then((response) => {
           if (response.data.length > 0) {

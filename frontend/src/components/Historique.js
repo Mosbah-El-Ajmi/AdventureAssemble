@@ -12,7 +12,7 @@ const Historique = () => {
     const fetchHistory = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
+          `https://backendgg.ddns.net/history/${localStorage.getItem("auth_token")}`
         );
         setHistory(response.data);
       } catch (error) {

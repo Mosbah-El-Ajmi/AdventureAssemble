@@ -54,7 +54,7 @@ export const GraphiquesProvider = ({ children }) => {
         if (!selectedPlayerId) return; // Exit if no player is selected
 
         const response = await axios.get(
-          `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
+          `https://backendgg.ddns.net/history/${localStorage.getItem("auth_token")}`
         );
 
         const playerData = response.data.filter(
