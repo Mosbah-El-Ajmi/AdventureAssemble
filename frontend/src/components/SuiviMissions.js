@@ -149,7 +149,7 @@ const ListeMissions = () => {
                     onChange={handleFileChange}
                   />
                 )}
-                {missionActive.id_status === 2 && (
+                {(missionActive.id_status === 2 || missionActive.id_status === 3) && (
                   <img
                     src={missionActive.photo_url}
                     alt="preuve pour valider la missions"
