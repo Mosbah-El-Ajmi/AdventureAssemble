@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import {
@@ -13,6 +13,7 @@ import Confetti from "react-confetti";
 import "../css/Rewards.css";
 
 const Recompense = () => {
+  const [history, setHistory] = useState([]);
   const [totalPoints, setTotalPoints] = useState(0);
   const [rewards, setRewards] = useState([]);
   const [nextReward, setNextReward] = useState(null);
@@ -22,6 +23,7 @@ const Recompense = () => {
   const [claimedRewards, setClaimedRewards] = useState(
     JSON.parse(localStorage.getItem("claimedRewards")) || {}
   );
+  const selectedPlayerId = localStorage.getItem("joueur_id");
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -29,12 +31,7 @@ const Recompense = () => {
         const response = await axios.get(
           `http://localhost:3001/history/${localStorage.getItem("auth_token")}`
         );
-        const totalPoints = response.data.reduce(
-          (total, item) => total + item.points,
-          0
-        );
-        setTotalPoints(totalPoints);
-        calculateRewards(totalPoints);
+        setHistory(response.data);
       } catch (error) {
         console.error("Error fetching history:", error);
       }
@@ -42,6 +39,22 @@ const Recompense = () => {
 
     fetchHistory();
   }, []);
+
+  const filteredHistory = useMemo(() => {
+    if (!selectedPlayerId) return history;
+    return history.filter(
+      (item) => item.id_joueur === parseInt(selectedPlayerId)
+    );
+  }, [history, selectedPlayerId]);
+
+  useEffect(() => {
+    const totalPoints = filteredHistory.reduce(
+      (total, item) => total + item.points,
+      0
+    );
+    setTotalPoints(totalPoints);
+    calculateRewards(totalPoints);
+  }, [filteredHistory]);
 
   const calculateRewards = (points) => {
     const availableRewards = [
